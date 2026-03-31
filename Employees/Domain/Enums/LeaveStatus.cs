@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Domain.Enums
 {
-    internal class LeaveStatus
+    public class LeaveStatus
     {
     }
 }

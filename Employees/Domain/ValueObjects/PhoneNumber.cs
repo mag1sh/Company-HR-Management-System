@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
 {
-    internal class PhoneNumber
+    public class PhoneNumber
     {
     }
 }
