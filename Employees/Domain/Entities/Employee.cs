@@ -13,6 +13,12 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
         public int Id { get; private set; }
 
         public FullName Name { get; private set; }
+
+        public Employee(FullName name)
+        {
+            Name = name;
+        }
+
         public Email Email { get; private set; }
         public PhoneNumber PhoneNumber { get; private set; }
         public Address Address { get; private set; }
@@ -25,7 +31,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
         public int DepartmentId { get; private set; }
         public int PositionId { get; private set; }
 
-        // Constructor
+        
         public Employee(int id, FullName name, Email email, PhoneNumber phoneNumber, Address address,
                         DateTime hireDate, int departmentId, int positionId)
         {
@@ -37,7 +43,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
             HireDate = hireDate;
             DepartmentId = departmentId;
             PositionId = positionId;
-            Status = EmployeeStatus.Active;
+         //   Status = EmployeeStatus.Active;
         }
     }
 }
