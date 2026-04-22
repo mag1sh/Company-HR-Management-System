@@ -21,6 +21,8 @@ namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
             if (value.Length < 5)
                 throw new ArgumentException("Email is too short");
 
+            Value = value;
+
         }
     }
 }
