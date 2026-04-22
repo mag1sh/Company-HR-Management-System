@@ -31,5 +31,10 @@ namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
             Street = street;
             StreetNumber = streetNumber;
         }
+
+        public override string ToString()
+        {
+            return $"{Street} {StreetNumber}, {City}, {PostalCode}, {Country}";
+        }
     }
 }
