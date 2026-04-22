@@ -33,6 +33,8 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
 
         public void Approve()
         {
+            //if (Status != LeaveStatus.Pending)
+            //    throw new InvalidOperationException("Only pending requests can be approved.");
             Status = LeaveStatus.Approved;
         }
 
