@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Domain.Entities
 {
-    internal class Salary
+    public class Salary
     {
+        public int Id { get; set; }
+        public decimal Amount { get; set; }
+        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
     }
 }
