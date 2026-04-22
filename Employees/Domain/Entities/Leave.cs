@@ -15,8 +15,18 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
         public LeaveType LeaveType { get; private set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
-        public int CountDays { get; set; }
+        public int DaysCount { get; set; }
         public LeaveStatus Status { get; private set; }
 
+        public Leave(int employeeId, LeaveType leaveType, DateTime startDate, DateTime endDate)
+        {
+            EmployeeId = employeeId;
+            LeaveType = leaveType;
+            StartDate = startDate;
+            EndDate = endDate;
+
+            DaysCount = (endDate - startDate).Days + 1;
+            Status = LeaveStatus.Pending;
+        }
     }
 }
