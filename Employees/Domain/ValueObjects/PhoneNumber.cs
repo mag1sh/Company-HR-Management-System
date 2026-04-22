@@ -11,6 +11,8 @@ namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
         public string Number { get; }
         public PhoneNumber(string number)
         {
+            if (string.IsNullOrWhiteSpace(number))
+                throw new ArgumentException("Phone number cannot be empty.");
             Number = number;
         }
 
