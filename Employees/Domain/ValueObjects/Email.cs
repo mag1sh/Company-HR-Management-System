@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
 {
-    internal class Email
+    public class Email
     {
     }
 }

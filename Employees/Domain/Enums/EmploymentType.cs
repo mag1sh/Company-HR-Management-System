@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Domain.Enums
 {
-    internal class EmploymentType
+    public class EmploymentType
     {
     }
 }
