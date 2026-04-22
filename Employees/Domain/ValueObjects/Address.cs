@@ -14,5 +14,9 @@ namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
         public string Street { get; private set; }
         public string StreetNumber { get; private set; }
 
+        public Address(string country, string city, string postalCode, string street, string streetNumber)
+        {
+
+        }
     }
 }
