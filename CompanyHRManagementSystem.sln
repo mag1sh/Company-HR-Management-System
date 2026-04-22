@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36429.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyHRManagementSystem", "CompanyHRManagementSystem.csproj", "{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyHRManagementSystem.Tests", "..\CompanyHRManagementSystem.Tests\CompanyHRManagementSystem.Tests.csproj", "{5D26F13D-5285-40C5-A033-E3F765A95156}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D26F13D-5285-40C5-A033-E3F765A95156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D26F13D-5285-40C5-A033-E3F765A95156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D26F13D-5285-40C5-A033-E3F765A95156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D26F13D-5285-40C5-A033-E3F765A95156}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
