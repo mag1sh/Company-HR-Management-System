@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyHRManagementSystem",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyHRManagementSystem.Tests", "..\CompanyHRManagementSystem.Tests\CompanyHRManagementSystem.Tests.csproj", "{5D26F13D-5285-40C5-A033-E3F765A95156}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CompanyHRManagementSystem1", "CompanyHRManagementSystem1", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{5D26F13D-5285-40C5-A033-E3F765A95156} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {824D21F4-992C-4558-9F62-2BEA3BAA7BDF}
