@@ -20,6 +20,8 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
 
         public Leave(int employeeId, LeaveType leaveType, DateTime startDate, DateTime endDate)
         {
+            if(endDate < startDate)
+                throw new ArgumentException("End date cannot be before start date.");
             EmployeeId = employeeId;
             LeaveType = leaveType;
             StartDate = startDate;
