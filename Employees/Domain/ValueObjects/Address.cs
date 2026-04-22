@@ -24,6 +24,12 @@ namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
 
             if (string.IsNullOrWhiteSpace(street))
                 throw new ArgumentException("Street cannot be empty");
+
+            Country = country;
+            City = city;
+            PostalCode = postalCode;
+            Street = street;
+            StreetNumber = streetNumber;
         }
     }
 }
