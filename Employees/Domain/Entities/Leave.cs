@@ -30,5 +30,20 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
             DaysCount = (endDate - startDate).Days + 1;
             Status = LeaveStatus.Pending;
         }
+
+        public void Approve()
+        {
+            Status = LeaveStatus.Approved;
+        }
+
+        public void Reject()
+        {
+            Status = LeaveStatus.Rejected;
+        }
+
+        public void Cancel()
+        {
+            Status = LeaveStatus.Cancelled;
+        }
     }
 }
