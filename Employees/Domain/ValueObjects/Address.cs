@@ -16,7 +16,14 @@ namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
 
         public Address(string country, string city, string postalCode, string street, string streetNumber)
         {
+            if (string.IsNullOrWhiteSpace(country))
+                throw new ArgumentException("Country cannot be empty");
 
+            if (string.IsNullOrWhiteSpace(city))
+                throw new ArgumentException("City cannot be empty");
+
+            if (string.IsNullOrWhiteSpace(street))
+                throw new ArgumentException("Street cannot be empty");
         }
     }
 }
