@@ -10,5 +10,10 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
     public class CompanyStorage
     {
+        public int NextId { get; set; } = 1;
+
+        public List<Employee> Employees { get; set; } = new List<Employee>();
+
+        public List<Department> Departments { get; set; } = new List<Department>();
     }
 }
