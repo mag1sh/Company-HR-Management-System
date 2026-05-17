@@ -15,5 +15,7 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
         public List<Employee> Employees { get; set; } = new List<Employee>();
 
         public List<Department> Departments { get; set; } = new List<Department>();
+
+        public List<Leave> Leaves { get; set; } = new List<Leave>();
     }
 }
