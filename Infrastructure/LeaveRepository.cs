@@ -30,6 +30,34 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             return db.Leaves;
         }
 
-      
+        public void Save(Leave leave)
+        {
+            var db = _storage.Load();
+
+            if (leave.Id == 0)
+            {
+                var newLeave = new Leave(
+                    leave.EmployeeId,
+                    leave.LeaveType,
+                    leave.StartDate,
+                    leave.EndDate
+                );
+
+                db.Leaves.Add(newLeave);
+            }
+            else
+            {
+                var existing = db.Leaves.FirstOrDefault(l => l.Id == leave.Id);
+
+                if (existing == null)
+                    throw new Exception("Leave not found");
+
+                existing.Reject(); 
+            }
+
+            _storage.Save(db);
+        }
+
+        
     }
 }
