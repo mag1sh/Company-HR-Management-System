@@ -7,7 +7,7 @@ using CompanyHRManagementSystem.Employees.Services.Interfaces;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
-    public class FileLeaveRepository : ILeaveRepository
+    public class GetById : ILeaveRepository
     {
         private readonly FileStorage _storage;
 
@@ -16,5 +16,14 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             _storage = storage;
         }
 
+        public Leave GetById(int id)
+        {
+            var db = _storage.Load();
+
+            return db.Leaves.FirstOrDefault(l => l.Id == id)
+                   ?? throw new Exception("Leave not found");
+        }
+
+       
     }
 }
