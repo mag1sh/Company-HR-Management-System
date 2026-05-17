@@ -14,73 +14,73 @@ using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Infrastructure
 {
-     public class FileEmployeeRepository : IEmployeeRepository
-    {
-        private readonly FileStorage _emplopyeeStorage;
-
-        public FileEmployeeRepository(FileStorage storage)
+         public class FileEmployeeRepository : IEmployeeRepository
         {
-            _emplopyeeStorage = storage;
-        }
+            private readonly FileStorage _emplopyeeStorage;
 
-        public IReadOnlyList<Employee> GetAll()
-        {
-            var db = _emplopyeeStorage.Load();
-
-            return db.Employees;
-        }
-
-        public Employee GetById(int id)
-        {
-            var db = _emplopyeeStorage.Load();
-
-            foreach (var account in db.Employees)
+            public FileEmployeeRepository(FileStorage storage)
             {
-                if (account.Id == id)
-                {
-                    return account;
-                }
+                _emplopyeeStorage = storage;
             }
 
-            throw new Exception("Account not found");
-        }
+            public IReadOnlyList<Employee> GetAll()
+            {
+                var db = _emplopyeeStorage.Load();
 
-        public void Save(Employee employee)
-        {
-            var db = _emplopyeeStorage.Load();
-            if (employee.Id == 0)
-            {
-                var newEmployee = new Employee(
-                    db.NextId++,
-                    employee.Name,
-                    employee.Email,
-                    employee.PhoneNumber,
-                    employee.Address,
-                    employee.HireDate,
-                    employee.DepartmentId,
-                    employee.PositionId
-                    );
-                db.Employees.Add(newEmployee);
+                return db.Employees;
             }
-            else
+
+            public Employee GetById(int id)
             {
-                bool isFound = false;
-                for (int i = 0; i < db.Employees.Count; i++)
+                var db = _emplopyeeStorage.Load();
+
+                foreach (var account in db.Employees)
                 {
-                    if (db.Employees[i].Id == employee.Id)
+                    if (account.Id == id)
                     {
-                        db.Employees[i] = employee;
-                        isFound = true;
-                        break;
+                        return account;
                     }
                 }
 
-                if (!isFound)
-                {
-                    throw new Exception("Account not found");
-                }
+                throw new Exception("Account not found");
             }
-            _emplopyeeStorage.Save(db);
+
+            public void Save(Employee employee)
+            {
+                var db = _emplopyeeStorage.Load();
+                if (employee.Id == 0)
+                {
+                    var newEmployee = new Employee(
+                        db.NextId++,
+                        employee.Name,
+                        employee.Email,
+                        employee.PhoneNumber,
+                        employee.Address,
+                        employee.HireDate,
+                        employee.DepartmentId,
+                        employee.PositionId
+                        );
+                    db.Employees.Add(newEmployee);
+                }
+                else
+                {
+                    bool isFound = false;
+                    for (int i = 0; i < db.Employees.Count; i++)
+                    {
+                        if (db.Employees[i].Id == employee.Id)
+                        {
+                            db.Employees[i] = employee;
+                            isFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!isFound)
+                    {
+                        throw new Exception("Account not found");
+                    }
+                }
+                _emplopyeeStorage.Save(db);
+            }
         }
-    }
 }
