@@ -1,13 +1,20 @@
-﻿using CompanyHRManagementSystem.Employees.Services.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CompanyHRManagementSystem.Application.Interfaces;
+using CompanyHRManagementSystem.Employees.Domain.Entities;
+using CompanyHRManagementSystem.Employees.Services.Interfaces;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
-    public class LeaveRepository : ILeaveRepository
+    public class FileLeaveRepository : ILeaveRepository
     {
+        private readonly FileStorage _storage;
+
+        public FileLeaveRepository(FileStorage storage)
+        {
+            _storage = storage;
+        }
+
     }
 }
