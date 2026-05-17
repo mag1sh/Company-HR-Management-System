@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
-    internal class PositionRepository
+    public class PositionRepository : IPositionRepository
     {
     }
 }
