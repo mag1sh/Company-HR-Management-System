@@ -58,6 +58,19 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             _storage.Save(db);
         }
 
-        
+        public void Delete(int id)
+        {
+            var db = _storage.Load();
+
+            var leave = db.Leaves.FirstOrDefault(l => l.Id == id);
+
+            if (leave != null)
+            {
+                db.Leaves.Remove(leave);
+                _storage.Save(db);
+            }
+        }
+
+       
     }
 }
