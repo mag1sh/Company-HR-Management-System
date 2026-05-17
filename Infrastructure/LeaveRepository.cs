@@ -71,6 +71,24 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             }
         }
 
-       
+        public IReadOnlyList<Leave> GetByEmployeeId(int employeeId)
+        {
+            var db = _storage.Load();
+            return db.Leaves.Where(l => l.EmployeeId == employeeId).ToList();
+        }
+
+        public IReadOnlyList<Leave> GetByDepartmentId(int departmentId)
+        {
+            var db = _storage.Load();
+
+            var employeeIds = db.Employees
+                .Where(e => e.DepartmentId == departmentId)
+                .Select(e => e.Id)
+                .ToList();
+
+            return db.Leaves
+                .Where(l => employeeIds.Contains(l.EmployeeId))
+                .ToList();
+        }
     }
 }
