@@ -28,6 +28,44 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             return db.Positions;
         }
 
-        
+        public void Save(Position position)
+        {
+            var db = _storage.Load();
+
+            if (position.PositionId == 0)
+            {
+                var newPosition = new Position(
+                    db.NextId++,
+                    position.Title
+                );
+
+                db.Positions.Add(newPosition);
+            }
+            else
+            {
+                var existing = db.Positions.FirstOrDefault(p => p.PositionId == position.PositionId);
+
+                if (existing == null)
+                    throw new Exception("Position not found");
+
+                db.Positions.Remove(existing);
+                db.Positions.Add(position);
+            }
+
+            _storage.Save(db);
+        }
+
+        public void Delete(int id)
+        {
+            var db = _storage.Load();
+
+            var position = db.Positions.FirstOrDefault(p => p.PositionId == id);
+
+            if (position != null)
+            {
+                db.Positions.Remove(position);
+                _storage.Save(db);
+            }
+        }
     }
 }
