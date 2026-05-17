@@ -1,12 +1,37 @@
-﻿using System;
+﻿using CompanyHRManagementSystem.Application.Interfaces;
+using CompanyHRManagementSystem.Employees.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
-    internal class FileSalaryRepository
+    public class FileSalaryRepository : ISalaryRepository
     {
+        private readonly FileStorage _storage;
+
+        public FileSalaryRepository(FileStorage storage)
+        {
+            _storage = storage;
+        }
+
+        public void Save(Salary salary)
+        {
+            var db = _storage.Load();
+
+            salary.Id = db.NextId++;
+            db.Salaries.Add(salary);
+
+            _storage.Save(db);
+        }
+
+        public IReadOnlyList<Salary> GetByEmployeeId(int employeeId)
+        {
+            var db = _storage.Load();
+
+            return db.Salaries
+                .Where(s => s.EmployeeId == employeeId)
+                .ToList();
+        }
     }
 }
