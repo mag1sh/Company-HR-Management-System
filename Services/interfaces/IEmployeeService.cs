@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using CompanyHRManagementSystem.Employees.Domain.Entities;
+using Domain.Entities;
 
-namespace CompanyHRManagementSystem.Employees.Services.Interfaces
+namespace Services.Interfaces
 {
     internal interface IEmployeeService
     {
+        void AddEmployee(Employee employee);
+
+        void UpdateEmployee(Employee employee);
+
+        void DeactivateEmployee(int employeeId);
+
+        List<Employee> GetAllEmployees();
+
+        Employee GetById(int employeeId);
     }
 }
