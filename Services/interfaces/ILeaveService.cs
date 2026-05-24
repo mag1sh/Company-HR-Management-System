@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CompanyHRManagementSystem.Employees.Domain.Entities;
+using Domain.Entities;
 
-namespace CompanyHRManagementSystem.Employees.Services.Interfaces
+namespace Services.Interfaces
 {
     internal interface ILeaveService
     {
+        void RequestLeave(Leave leave);
+
+        void ApproveLeave(int leaveId);
+
+        void RejectLeave(int leaveId);
+
+        List<Leave> GetAllLeaves();
     }
 }
