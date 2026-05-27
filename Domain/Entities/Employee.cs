@@ -11,7 +11,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
     public class Employee
     {
         private static int _nextId = 1;
-        public int Id { get; private set; }
+        public int Id { get;  set; }
 
         public FullName Name { get;  set; }
         public Email Email { get;  set; }

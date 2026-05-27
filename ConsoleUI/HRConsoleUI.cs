@@ -88,6 +88,43 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             }
         }
 
+        private void EmployeesControl()
+        {
+            Console.Write("Choose option: ");
+
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    EditEmployee();
+                    break;
+                case "2":
+                    DeactivateOrFireEmployee();
+                    break;
+                case "3":
+                    ChangeEmployeeDepartmentAndPosition();
+                    break;
+                case "3":
+                    ChangeEmployeeSalary();
+                    break;
+
+                case "X":
+                    return;
+                default:
+                    Console.WriteLine("Invalid option!");
+                    break;
+            }
+        }
+
+        private void EditEmployee()
+        {
+            Console.Write("Enter Employee id: ");
+            int employeeId = int.Parse(Console.ReadLine());
+            Employee updatedemployee = GetEmployeInfo();
+            updatedemployee.Id = employeeId;
+            _employeeService.UpdateEmployee(updatedemployee);
+        }
+
         private void AddDepartment()
         {
             Console.Write("Department Name: ");
@@ -105,9 +142,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             
         }
 
-       
-
-        private void AddEmployee()
+       public Employee GetEmployeInfo()
         {
             Console.Write("First Name: ");
             string firstName = Console.ReadLine();
@@ -167,6 +202,12 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 deparmentId,
                 posionId
                 );
+            return employee;
+        }
+
+        private void AddEmployee()
+        {
+            Employee employee = GetEmployeInfo();
 
             _employeeService.AddEmployee(employee);
 
