@@ -20,5 +20,6 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
         public List<Leave> Leaves { get; set; } = new List<Leave>();
 
         public List<Position> Positions { get; set; } = new List<Position>();
+        public List<Salary> Salaries { get; set; } = new List<Salary>();
     }
 }

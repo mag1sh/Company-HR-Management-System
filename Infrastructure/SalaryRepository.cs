@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
-    public class FileSalaryRepository : ISalaryRepository
+    public class FileSalaryRepository 
     {
         private readonly FileStorage _storage;
 
