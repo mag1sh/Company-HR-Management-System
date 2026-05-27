@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain.Entities;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
@@ -18,7 +19,7 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
         {
             var db = _storage.Load();
 
-            return db.Positions.FirstOrDefault(p => p.PositionId == id)
+            return db.Positions.FirstOrDefault(p => p.Id == id)
                    ?? throw new Exception("Position not found");
         }
 
@@ -32,18 +33,20 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
         {
             var db = _storage.Load();
 
-            if (position.PositionId == 0)
+            if (position.Id == 0)
             {
                 var newPosition = new Position(
                     db.NextId++,
-                    position.Title
+                    position.Title,
+                    position.Description,
+                    position.BaseSalary
                 );
 
                 db.Positions.Add(newPosition);
             }
             else
             {
-                var existing = db.Positions.FirstOrDefault(p => p.PositionId == position.PositionId);
+                var existing = db.Positions.FirstOrDefault(p => p.Id == position.Id);
 
                 if (existing == null)
                     throw new Exception("Position not found");
@@ -59,7 +62,7 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
         {
             var db = _storage.Load();
 
-            var position = db.Positions.FirstOrDefault(p => p.PositionId == id);
+            var position = db.Positions.FirstOrDefault(p => p.Id == id);
 
             if (position != null)
             {
