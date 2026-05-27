@@ -10,6 +10,9 @@ namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
     {
         public string Value { get; private set; }
 
+        protected Email()
+        {
+        }
         public Email(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
