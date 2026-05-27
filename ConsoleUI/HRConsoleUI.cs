@@ -12,13 +12,13 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 {
     public class HRConsoleUI
     {
-       
-            private readonly EmployeeService _employeeService;
 
-            public HRConsoleUI(EmployeeService employeeService)
-            {
-                _employeeService = employeeService;
-            }
+        private readonly EmployeeService _employeeService;
+
+        public HRConsoleUI(EmployeeService employeeService)
+        {
+            _employeeService = employeeService;
+        }
 
         public void Start()
         {
@@ -55,10 +55,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             }
         }
 
-        private void ShowAllEmployees()
-        {
-            throw new NotImplementedException();
-        }
+
 
         private void AddEmployee()
         {
@@ -125,6 +122,22 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
             Console.WriteLine("Employee added successfully!");
         }
-    }
     
+        private void ShowAllEmployees()
+        {
+            var employees = _employeeService.GetAllEmployees();
+
+            foreach (var employee in employees)
+            {
+                Console.WriteLine(
+                    $"{employee.Id} | " +
+                    $"{employee.Name.ToString()} | " +
+                    $"{employee.Email}");
+            }
+        }
+
+
+
+    } 
 }
+
