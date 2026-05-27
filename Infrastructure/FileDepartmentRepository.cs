@@ -16,7 +16,9 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
 
         public void Save(Department department)
         {
-            ArgumentNullException.ThrowIfNull(department);
+            if (department == null)
+                throw new ArgumentNullException("the department cant be null!");
+            //ArgumentNullException.ThrowIfNull(department);
 
             var db = _storage.Load();
             var newDepartment = new Department(
