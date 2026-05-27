@@ -51,7 +51,6 @@ namespace CompanyHRManagementSystem.Infrastructure
                 if (employee.Id == 0)
                 {
                     var newEmployee = new Employee(
-                        db.NextId++,
                         employee.Name,
                         employee.Email,
                         employee.PhoneNumber,

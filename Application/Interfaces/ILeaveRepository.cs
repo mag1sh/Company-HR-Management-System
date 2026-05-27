@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CompanyHRManagementSystem.Domain.Entities;
+
 using CompanyHRManagementSystem.Employees.Domain.Entities;
 
 namespace CompanyHRManagementSystem.Employees.Services.Interfaces

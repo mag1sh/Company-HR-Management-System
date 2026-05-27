@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CompanyHRManagementSystem.Employees.Domain.Entities;
+using CompanyHRManagementSystem.Employees.Domain.ValueObjects;
 using CompanyHRManagementSystem.Employees.Services;
 
 namespace CompanyHRManagementSystem.Employees.ConsoleUI
@@ -59,7 +61,66 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
         private void AddEmployee()
         {
-            throw new NotImplementedException();
+            Console.Write("First Name: ");
+            string firstName = Console.ReadLine();
+
+            Console.Write("Last Name: ");
+            string lastName = Console.ReadLine();
+
+            Console.Write("Which department: ");
+            string deparment = Console.ReadLine();
+
+            Console.Write("Position: ");
+            string posion = Console.ReadLine();
+
+            Console.Write("Email: ");
+            string emailInput = Console.ReadLine();
+
+            Console.Write("Phone Number: ");
+            string phone = Console.ReadLine();
+
+            Console.Write("Country: ");
+            string country = Console.ReadLine();
+
+            Console.Write("City: ");
+            string city = Console.ReadLine();
+
+            Console.Write("Postal Code: ");
+            string postalCode = Console.ReadLine();
+
+            Console.Write("Street: ");
+            string street = Console.ReadLine();
+
+            Console.Write("Street Number: ");
+            string streetNumber = Console.ReadLine();
+
+            var email = new Email(emailInput);
+
+            var address = new Address(
+                country,
+                city,
+                postalCode,
+                street,
+                streetNumber);
+
+
+
+            string name = $"{firstName} {lastName}";
+            DateTime hiredate = DateTime.Now;
+            Department department = new Department(deparment, "description");
+
+
+            var employee = new Employee(
+                 name,
+                email,
+                phone,
+                address,
+                hiredate
+                );
+
+            _employeeService.AddEmployee(employee);
+
+            Console.WriteLine("Employee added successfully!");
         }
     }
     

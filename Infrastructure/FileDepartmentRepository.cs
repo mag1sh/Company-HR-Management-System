@@ -47,5 +47,21 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             }
             return result;
         }
+
+        public IReadOnlyList<Department> GetByDepartmentName(string departmentName)
+        {
+            var db = _storage.Load();
+
+            List<Department> result = new List<Department>();
+
+            foreach (Department department in db.Departments)
+            {
+                if (department.Name == departmentName)
+                {
+                    result.Add(department);
+                }
+            }
+            return result;
+        }
     }
 }
