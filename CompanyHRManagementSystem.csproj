@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\DepartmentService.cs" />
     <Compile Include="Application\Interfaces\IDepartmentRepository.cs" />
     <Compile Include="ConsoleUI\HRConsoleUI.cs" />
     <Compile Include="Domain\Entities\Department.cs" />

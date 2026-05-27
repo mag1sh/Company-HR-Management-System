@@ -23,8 +23,8 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
 
         public EmployeeStatus Status { get;  set; }
 
-        public int DepartmentId { get; private set; }
-        public int PositionId { get; private set; }
+        public int DepartmentId { get;  set; }
+        public int PositionId { get;  set; }
 
         // Constructor
         public Employee( FullName name, Email email, PhoneNumber phoneNumber, Address address,

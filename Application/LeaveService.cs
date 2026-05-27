@@ -50,6 +50,22 @@ namespace CompanyHRManagementSystem.Employees.Services
             leave.Reject();
         }
 
+        public int GetUsedLeaveDays(int employeeId, int year)
+        {
+            return _leaves
+                .Where(l => l.EmployeeId == employeeId &&
+                            l.Status == LeaveStatus.Approved &&
+                            l.LeaveType == LeaveType.Vacation &&
+                            l.StartDate.Year == year)
+                .Sum(l => (l.EndDate - l.StartDate).Days + 1);
+        }
+
+
+        public List<Leave> GetLeavesByPeriod(DateTime start, DateTime end)
+        {
+            return _leaves.Where(l => l.StartDate >= start && l.EndDate <= end).ToList();
+        }
+
         public List<Leave> GetAllLeaves()
         {
             return _leaves;
