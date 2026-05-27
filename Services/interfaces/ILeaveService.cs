@@ -1,9 +1,10 @@
 ﻿using CompanyHRManagementSystem.Employees.Domain.Entities;
 using Domain.Entities;
+using System.Collections.Generic;
 
 namespace Services.Interfaces
 {
-    internal interface ILeaveService
+    public interface ILeaveService
     {
         void RequestLeave(Leave leave);
 

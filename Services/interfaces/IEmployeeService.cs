@@ -4,7 +4,7 @@ using Domain.Entities;
 
 namespace Services.Interfaces
 {
-    internal interface IEmployeeService
+    public interface IEmployeeService
     {
         void AddEmployee(Employee employee);
 
