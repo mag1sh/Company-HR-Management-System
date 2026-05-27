@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CompanyHRManagementSystem.Application;
 using CompanyHRManagementSystem.Employees.Domain.Entities;
 using CompanyHRManagementSystem.Employees.Domain.ValueObjects;
 using CompanyHRManagementSystem.Employees.Infrastructure;
@@ -14,6 +15,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
     {
 
         private readonly EmployeeService _employeeService;
+        private readonly DepartmentService _departmentService;
 
         public HRConsoleUI(EmployeeService employeeService)
         {
@@ -98,7 +100,9 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                departmentName,
                departmnetDescription);
 
+            _departmentService.AddDepartment(department);
             Console.WriteLine("Department added successfully!");
+            
         }
 
        
