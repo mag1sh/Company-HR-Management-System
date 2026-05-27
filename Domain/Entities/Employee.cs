@@ -10,6 +10,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
 {
     public class Employee
     {
+        private static int _nextId = 1;
         public int Id { get; private set; }
 
         public FullName Name { get;  set; }
@@ -26,10 +27,10 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
         public int PositionId { get; private set; }
 
         // Constructor
-        public Employee(int id, FullName name, Email email, PhoneNumber phoneNumber, Address address,
+        public Employee( FullName name, Email email, PhoneNumber phoneNumber, Address address,
                         DateTime hireDate, int departmentId, int positionId)
         {
-            Id = id;
+            Id = _nextId++;
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;
