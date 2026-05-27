@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Domain.Entities
 {
-    internal class EmploymentHistory : List<Employee>
+    public class EmploymentHistory : List<Employee>
     {
     }
 }
