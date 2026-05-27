@@ -40,7 +40,7 @@ namespace CompanyHRManagementSystem.Application
 
             public List<Position> GetAllPositions()
             {
-                return _storage.Positions;
+                return _storage.Positions.ToList();
             }
 
            
