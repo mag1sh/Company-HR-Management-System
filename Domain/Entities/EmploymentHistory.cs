@@ -1,12 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CompanyHRManagementSystem.Employees.Domain.Entities
+namespace Domain.Entities
 {
-    public class EmploymentHistory : List<Employee>
+    public class EmploymentHistory
     {
+        public int Id { get; set; }
+
+        public int EmployeeId { get; set; }
+
+        public string OldDepartment { get; set; }
+
+        public string NewDepartment { get; set; }
+
+        public string OldPosition { get; set; }
+
+        public string NewPosition { get; set; }
+
+        public DateTime ChangeDate { get; set; }
+
+        public EmploymentHistory()
+        {
+        }
+
+        public EmploymentHistory(
+            int employeeId,
+            string oldDepartment,
+            string newDepartment,
+            string oldPosition,
+            string newPosition)
+        {
+            EmployeeId = employeeId;
+            OldDepartment = oldDepartment;
+            NewDepartment = newDepartment;
+            OldPosition = oldPosition;
+            NewPosition = newPosition;
+            ChangeDate = DateTime.Now;
+        }
     }
 }
