@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CompanyHRManagementSystem.Employees.Domain.Entities;
 using CompanyHRManagementSystem.Employees.Domain.ValueObjects;
+using CompanyHRManagementSystem.Employees.Infrastructure;
 using CompanyHRManagementSystem.Employees.Services;
 
 namespace CompanyHRManagementSystem.Employees.ConsoleUI
@@ -67,11 +68,11 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             Console.Write("Last Name: ");
             string lastName = Console.ReadLine();
 
-            Console.Write("Which department: ");
-            string deparment = Console.ReadLine();
+            Console.Write("Which department id: ");
+            int deparmentId = int.Parse(Console.ReadLine());
 
-            Console.Write("Position: ");
-            string posion = Console.ReadLine();
+            Console.Write("Position id: ");
+            int posionId = int.Parse(Console.ReadLine());
 
             Console.Write("Email: ");
             string emailInput = Console.ReadLine();
@@ -105,17 +106,19 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
 
 
-            string name = $"{firstName} {lastName}";
+            FullName name = new FullName(firstName, lastName);
             DateTime hiredate = DateTime.Now;
-            Department department = new Department(deparment, "description");
+            PhoneNumber phoneNumber = new PhoneNumber(phone);
 
 
             var employee = new Employee(
                  name,
                 email,
-                phone,
+                phoneNumber,
                 address,
-                hiredate
+                hiredate,
+                deparmentId,
+                posionId
                 );
 
             _employeeService.AddEmployee(employee);

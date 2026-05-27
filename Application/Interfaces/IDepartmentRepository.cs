@@ -11,6 +11,6 @@ namespace CompanyHRManagementSystem.Application.Interfaces
     {
         void Save(Department department);
         IReadOnlyList<Department> GetByDepartmentId(int departmentId);
-        IReadOnlyList<Department> GetByDepartmentName(string departmentName);
+       //ReadOnlyList<Department> GetByDepartmentName(string departmentName);
     }
 }

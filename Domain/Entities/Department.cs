@@ -21,5 +21,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
             Description = description;
             Employees = new List<Employee>();
         }
+
+
     }
 }
