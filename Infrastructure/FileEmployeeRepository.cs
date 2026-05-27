@@ -16,70 +16,73 @@ namespace CompanyHRManagementSystem.Infrastructure
 {
          public class FileEmployeeRepository : IEmployeeRepository
         {
-            private readonly FileStorage _emplopyeeStorage;
+        private readonly CompanyStorage _context;
 
-            public FileEmployeeRepository(FileStorage storage)
-            {
-                _emplopyeeStorage = storage;
-            }
-
-            public IReadOnlyList<Employee> GetAll()
-            {
-                var db = _emplopyeeStorage.Load();
-
-                return db.Employees;
-            }
-
-            public Employee GetById(int id)
-            {
-                var db = _emplopyeeStorage.Load();
-
-                foreach (var account in db.Employees)
-                {
-                    if (account.Id == id)
-                    {
-                        return account;
-                    }
-                }
-
-                throw new Exception("Account not found");
-            }
-
-            public void Save(Employee employee)
-            {
-                var db = _emplopyeeStorage.Load();
-                if (employee.Id == 0)
-                {
-                    var newEmployee = new Employee(
-                        employee.Name,
-                        employee.Email,
-                        employee.PhoneNumber,
-                        employee.Address,
-                        employee.HireDate,
-                        employee.DepartmentId,
-                        employee.PositionId
-                        );
-                    db.Employees.Add(newEmployee);
-                }
-                else
-                {
-                    bool isFound = false;
-                    for (int i = 0; i < db.Employees.Count; i++)
-                    {
-                        if (db.Employees[i].Id == employee.Id)
-                        {
-                            db.Employees[i] = employee;
-                            isFound = true;
-                            break;
-                        }
-                    }
-
-                    if (!isFound)
-                    {
-                        throw new Exception("Account not found");
-                    }
-                }
-                _emplopyeeStorage.Save(db);
-            }
+      
+        public FileEmployeeRepository(CompanyStorage context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+
+        
+        public IReadOnlyList<Employee> GetAll()
+        {
+           
+            return _context.Employees.ToList();
+        }
+
+        
+        public Employee GetById(int id)
+        {
+            foreach (var employee in _context.Employees)
+            {
+                if (employee.Id == id)
+                {
+                    return employee;
+                }
+            }
+
+            throw new Exception("Employee not found in database");
+        }
+
+        
+        public void Save(Employee employee)
+        {
+            if (employee.Id == 0)
+            {
+               
+                _context.Employees.Add(employee);
+            }
+            else
+            {
+               
+                Employee existingEmployee = null;
+                foreach (var e in _context.Employees)
+                {
+                    if (e.Id == employee.Id)
+                    {
+                        existingEmployee = e;
+                        break;
+                    }
+                }
+
+                if (existingEmployee == null)
+                {
+                    throw new Exception("Employee not found for update");
+                }
+
+              
+                existingEmployee.Name = employee.Name;
+                existingEmployee.Email = employee.Email;
+                existingEmployee.PhoneNumber = employee.PhoneNumber;
+                existingEmployee.Address = employee.Address;
+                existingEmployee.DepartmentId = employee.DepartmentId;
+                existingEmployee.PositionId = employee.PositionId;
+                existingEmployee.Status = employee.Status;
+            }
+
+           
+            _context.SaveChanges();
+        }
+    }
 }

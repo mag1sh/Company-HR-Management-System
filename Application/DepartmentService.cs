@@ -40,7 +40,7 @@ namespace CompanyHRManagementSystem.Application
 
         public List<Department> GetAllDepartments()
         {
-            return _storage.Departments;
+            return _storage.Departments.ToList();
         }
 
        

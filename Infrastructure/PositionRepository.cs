@@ -1,73 +1,85 @@
-﻿using CompanyHRManagementSystem.Employees.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using CompanyHRManagementSystem.Employees.Domain.Entities;
+using CompanyHRManagementSystem.Employees.Infrastructure;
 using Domain.Entities;
 
-namespace CompanyHRManagementSystem.Employees.Infrastructure
+namespace CompanyHRManagementSystem.Infrastructure
 {
     public class PositionRepository
     {
-        private readonly FileStorage _storage;
-
-        public PositionRepository(FileStorage storage)
+        private readonly CompanyStorage _context;
+        public PositionRepository(CompanyStorage context)
         {
-            _storage = storage;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-
         public Position GetById(int id)
         {
-            var db = _storage.Load();
-
-            return db.Positions.FirstOrDefault(p => p.Id == id)
-                   ?? throw new Exception("Position not found");
+            foreach (var position in _context.Positions)
+            {
+                if (position.Id == id)
+                {
+                    return position;
+                }
+            }
+            throw new Exception("Position not found");
         }
 
         public IReadOnlyList<Position> GetAll()
         {
-            var db = _storage.Load();
-            return db.Positions;
+            List<Position> allPositions = new List<Position>();
+            foreach (var position in _context.Positions)
+            {
+                allPositions.Add(position);
+            }
+            return allPositions;
         }
 
         public void Save(Position position)
         {
-            var db = _storage.Load();
-
             if (position.Id == 0)
             {
-                var newPosition = new Position(
-                    db.NextId++,
-                    position.Title,
-                    position.Description,
-                    position.BaseSalary
-                );
-
-                db.Positions.Add(newPosition);
+                _context.Positions.Add(position);
             }
             else
             {
-                var existing = db.Positions.FirstOrDefault(p => p.Id == position.Id);
+                Position existing = null;
+                foreach (var p in _context.Positions)
+                {
+                    if (p.Id == position.Id)
+                    {
+                        existing = p;
+                        break;
+                    }
+                }
 
                 if (existing == null)
                     throw new Exception("Position not found");
 
-                db.Positions.Remove(existing);
-                db.Positions.Add(position);
+                existing.Title = position.Title;
+                existing.Description = position.Description;
+                existing.BaseSalary = position.BaseSalary;
             }
 
-            _storage.Save(db);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var db = _storage.Load();
-
-            var position = db.Positions.FirstOrDefault(p => p.Id == id);
-
-            if (position != null)
+            Position positionToDelete = null;
+            foreach (var p in _context.Positions)
             {
-                db.Positions.Remove(position);
-                _storage.Save(db);
+                if (p.Id == id)
+                {
+                    positionToDelete = p;
+                    break;
+                }
+            }
+
+            if (positionToDelete != null)
+            {
+                _context.Positions.Remove(positionToDelete);
+                _context.SaveChanges(); 
             }
         }
     }

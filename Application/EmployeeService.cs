@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq; // Добавено за .ToList() метода
 using CompanyHRManagementSystem.Employees.Domain.Entities;
 using CompanyHRManagementSystem.Employees.Domain.Enums;
 using CompanyHRManagementSystem.Employees.Infrastructure;
@@ -17,10 +18,11 @@ namespace CompanyHRManagementSystem.Employees.Services
 
         public void AddEmployee(Employee employee)
         {
-            employee.Id = _storage.NextId++;
             employee.Status = EmployeeStatus.Active;
 
             _storage.Employees.Add(employee);
+
+            _storage.SaveChanges();
         }
 
         public void UpdateEmployee(Employee updatedEmployee)
@@ -32,6 +34,8 @@ namespace CompanyHRManagementSystem.Employees.Services
             employee.Address = updatedEmployee.Address;
             employee.PhoneNumber = updatedEmployee.PhoneNumber;
             employee.HireDate = updatedEmployee.HireDate;
+
+            _storage.SaveChanges();
         }
 
         public void DeactivateEmployee(int employeeId)
@@ -39,11 +43,13 @@ namespace CompanyHRManagementSystem.Employees.Services
             var employee = GetById(employeeId);
             employee.Status = EmployeeStatus.Inactive;
             employee.TerminationDate = DateTime.Now;
+
+            _storage.SaveChanges();
         }
 
         public List<Employee> GetAllEmployees()
         {
-            return _storage.Employees;
+            return _storage.Employees.ToList();
         }
 
         public Employee GetById(int employeeId)
@@ -55,7 +61,6 @@ namespace CompanyHRManagementSystem.Employees.Services
             }
             throw new Exception("Служителят не е намерен!");
         }
-
 
         public List<Employee> GetActiveEmployees()
         {

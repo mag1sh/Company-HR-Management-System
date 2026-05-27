@@ -6,32 +6,42 @@ using System.Linq;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
-    public class FileSalaryRepository 
+    public class FileSalaryRepository
     {
-        private readonly FileStorage _storage;
-
-        public FileSalaryRepository(FileStorage storage)
+        public class SqlSalaryRepository
         {
-            _storage = storage;
-        }
+            private readonly CompanyStorage _context;
 
-        public void Save(Salary salary)
-        {
-            var db = _storage.Load();
+           
+            public SqlSalaryRepository(CompanyStorage context)
+            {
+                _context = context ?? throw new ArgumentNullException(nameof(context));
+            }
 
-            salary.Id = db.NextId++;
-            db.Salaries.Add(salary);
+        
+            public void Save(Salary salary)
+            {
+                
+                _context.Salaries.Add(salary);
 
-            _storage.Save(db);
-        }
+               
+                _context.SaveChanges();
+            }
 
-        public IReadOnlyList<Salary> GetByEmployeeId(int employeeId)
-        {
-            var db = _storage.Load();
+            public IReadOnlyList<Salary> GetByEmployeeId(int employeeId)
+            {
+                List<Salary> employeeSalaries = new List<Salary>();
 
-            return db.Salaries
-                .Where(s => s.EmployeeId == employeeId)
-                .ToList();
+                foreach (var salary in _context.Salaries)
+                {
+                    if (salary.EmployeeId == employeeId)
+                    {
+                        employeeSalaries.Add(salary);
+                    }
+                }
+
+                return employeeSalaries;
+            }
         }
     }
 }

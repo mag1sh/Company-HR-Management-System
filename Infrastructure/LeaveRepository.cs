@@ -9,86 +9,125 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
     public class FileLeaveRepository : ILeaveRepository
     {
-        private readonly FileStorage _storage;
+        private readonly CompanyStorage _context;
 
-        public FileLeaveRepository(FileStorage storage)
+        public FileLeaveRepository(CompanyStorage context)
         {
-            _storage = storage;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public Leave GetById(int id)
         {
-            var db = _storage.Load();
-
-            return db.Leaves.FirstOrDefault(l => l.Id == id)
-                   ?? throw new Exception("Leave not found");
+            foreach (var leave in _context.Leaves)
+            {
+                if (leave.Id == id)
+                {
+                    return leave;
+                }
+            }
+            throw new Exception("Leave not found");
         }
 
         public IReadOnlyList<Leave> GetAll()
         {
-            var db = _storage.Load();
-            return db.Leaves;
+            List<Leave> allLeaves = new List<Leave>();
+            foreach (var leave in _context.Leaves)
+            {
+                allLeaves.Add(leave);
+            }
+            return allLeaves;
         }
 
         public void Save(Leave leave)
         {
-            var db = _storage.Load();
-
             if (leave.Id == 0)
             {
-                var newLeave = new Leave(
-                    leave.EmployeeId,
-                    leave.LeaveType,
-                    leave.StartDate,
-                    leave.EndDate
-                );
-
-                db.Leaves.Add(newLeave);
+                _context.Leaves.Add(leave);
             }
             else
             {
-                var existing = db.Leaves.FirstOrDefault(l => l.Id == leave.Id);
+               
+                Leave existing = null;
+                foreach (var l in _context.Leaves)
+                {
+                    if (l.Id == leave.Id)
+                    {
+                        existing = l;
+                        break;
+                    }
+                }
 
                 if (existing == null)
                     throw new Exception("Leave not found");
 
-                existing.Reject(); 
+               
+                existing.Status = leave.Status;
+
+                
+                existing.LeaveType = leave.LeaveType;
+                existing.DaysCount = leave.DaysCount;
             }
 
-            _storage.Save(db);
+           
+            _context.SaveChanges();
         }
 
+        
         public void Delete(int id)
         {
-            var db = _storage.Load();
-
-            var leave = db.Leaves.FirstOrDefault(l => l.Id == id);
-
-            if (leave != null)
+            Leave leaveToDelete = null;
+            foreach (var l in _context.Leaves)
             {
-                db.Leaves.Remove(leave);
-                _storage.Save(db);
+                if (l.Id == id)
+                {
+                    leaveToDelete = l;
+                    break;
+                }
+            }
+
+            if (leaveToDelete != null)
+            {
+                _context.Leaves.Remove(leaveToDelete);
+                _context.SaveChanges(); 
             }
         }
 
         public IReadOnlyList<Leave> GetByEmployeeId(int employeeId)
         {
-            var db = _storage.Load();
-            return db.Leaves.Where(l => l.EmployeeId == employeeId).ToList();
+            List<Leave> employeeLeaves = new List<Leave>();
+            foreach (var l in _context.Leaves)
+            {
+                if (l.EmployeeId == employeeId)
+                {
+                    employeeLeaves.Add(l);
+                }
+            }
+            return employeeLeaves;
         }
+
 
         public IReadOnlyList<Leave> GetByDepartmentId(int departmentId)
         {
-            var db = _storage.Load();
+            List<int> employeeIdsInDept = new List<int>();
+            foreach (var employee in _context.Employees)
+            {
+                if (employee.DepartmentId == departmentId)
+                {
+                    employeeIdsInDept.Add(employee.Id);
+                }
+            }
 
-            var employeeIds = db.Employees
-                .Where(e => e.DepartmentId == departmentId)
-                .Select(e => e.Id)
-                .ToList();
+           
+            List<Leave> departmentLeaves = new List<Leave>();
+            foreach (var leave in _context.Leaves)
+            {
+                if (employeeIdsInDept.Contains(leave.EmployeeId))
+                {
+                    departmentLeaves.Add(leave);
+                }
+            }
 
-            return db.Leaves
-                .Where(l => employeeIds.Contains(l.EmployeeId))
-                .ToList();
+            return departmentLeaves;
         }
     }
 }

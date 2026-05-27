@@ -70,28 +70,28 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                         EmployeesControl();
                         break;
                     case "5":
-                        DepartmentsEmployeesControl();
+                       // DepartmentsEmployeesControl();
                         break;
                     case "6":
-                        ShowSalaryhistory();
+                       // ShowSalaryhistory();
                         break;
                     case "7":
-                        VacationRequests();
+                      //  VacationRequests();
                         break;
                     case "8":
-                        vacationDaysForEveryEmployee();
-                        break;
-                    case "8":
-                        ApproveOrDenyVacantionRequsts();
+                       // vacationDaysForEveryEmployee();
                         break;
                     case "9":
-                        RegisterLeaveTypeRequests();
+                       // ApproveOrDenyVacantionRequsts();
                         break;
-                    case "9":
-                        ReferenceForEveryEmployeeByCondition();
+                    case "10":
+                       // RegisterLeaveTypeRequests();
                         break;
-                    case "9":
-                        ShowEmploymentHistory();
+                    case "11":
+                       // ReferenceForEveryEmployeeByCondition();
+                        break;
+                    case "12":
+                       // ShowEmploymentHistory();
                         break;
                     case "X":
                         return;
