@@ -16,6 +16,51 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             {
                 _employeeService = employeeService;
             }
-     }
+
+        public void Start()
+        {
+            while (true)
+            {
+                Console.WriteLine("===== HR Management System =====");
+                Console.WriteLine("1. Add Employee");
+                Console.WriteLine("2. Show All Employees");
+                Console.WriteLine("3. Exit");
+
+                Console.Write("Choose option: ");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        AddEmployee();
+                        break;
+
+                    case "2":
+                        ShowAllEmployees();
+                        break;
+
+                    case "3":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option!");
+                        break;
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        private void ShowAllEmployees()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddEmployee()
+        {
+            throw new NotImplementedException();
+        }
+    }
     
 }
