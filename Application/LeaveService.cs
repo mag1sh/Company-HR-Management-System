@@ -5,71 +5,109 @@ using System.Text;
 using System.Threading.Tasks;
 using CompanyHRManagementSystem.Employees.Domain.Entities;
 using CompanyHRManagementSystem.Employees.Domain.Enums;
+using CompanyHRManagementSystem.Employees.Infrastructure;
 using Services.Interfaces;
 
 namespace CompanyHRManagementSystem.Employees.Services
 {
-    public class LeaveService : ILeaveService
+    public class LeaveService
     {
-        private readonly List<Leave> _leaves = new List<Leave>();
+        private readonly CompanyStorage _storage;
+        private const int MaxPaidLeaveDaysPerYear = 20;
 
+        public LeaveService(CompanyStorage storage)
+        {
+            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
+        }
+
+       
         public void RequestLeave(Leave leave)
         {
-            bool hasConflict = _leaves.Any(l =>
-                l.EmployeeId == leave.EmployeeId &&
-                l.Status == LeaveStatus.Approved &&
-                leave.StartDate <= l.EndDate &&
-                leave.EndDate >= l.StartDate);
+           
+            foreach (var l in _storage.Leaves)
+            {
+                if (l.EmployeeId == leave.EmployeeId && l.Status == LeaveStatus.Approved)
+                {
+                    if (leave.StartDate <= l.EndDate && leave.EndDate >= l.StartDate)
+                    {
+                        throw new Exception("Служителят вече има одобрен отпуск или болничен за този период!");
+                    }
+                }
+            }
 
-            if (hasConflict)
-                throw new Exception("Leave conflict detected");
+           
+            if (leave.LeaveType == LeaveType.Vacation) 
+            {
+                int usedDays = GetUsedLeaveDays(leave.EmployeeId, leave.StartDate.Year);
 
+                if (usedDays + leave.DaysCount > MaxPaidLeaveDaysPerYear)
+                {
+                    throw new Exception($"Нямате достатъчно дни! Остават ви: {MaxPaidLeaveDaysPerYear - usedDays} дни за тази година.");
+                }
+            }
 
-            _leaves.Add(leave);
+            _storage.Leaves.Add(leave);
         }
 
+       
         public void ApproveLeave(int leaveId)
         {
-            var leave = _leaves.FirstOrDefault(l => l.Id == leaveId);
+            foreach (var l in _storage.Leaves)
+            {
+                if (l.Id == leaveId)
+                {
+                    if (l.Status != LeaveStatus.Pending)
+                        throw new Exception("Могат да се одобряват само чакащи (Pending) заявки!");
 
-            if (leave == null)
-                throw new Exception("Leave not found");
-
-            leave.Approve();
+                    l.Approve();
+                    return;
+                }
+            }
+            throw new Exception("Заявката за отпуск не е намерена!");
         }
 
-
-
+        
         public void RejectLeave(int leaveId)
         {
-            var leave = _leaves.FirstOrDefault(l => l.Id == leaveId);
+            foreach (var l in _storage.Leaves)
+            {
+                if (l.Id == leaveId)
+                {
+                    if (l.Status != LeaveStatus.Pending)
+                        throw new Exception("Могат да се отказват само чакащи (Pending) заявки!");
 
-            if (leave == null)
-                throw new Exception("Leave not found");
-
-            leave.Reject();
+                    l.Reject(); // Използваме твоя метод от Домейна
+                    return;
+                }
+            }
+            throw new Exception("Заявката за отпуск не е намерена!");
         }
 
+        
         public int GetUsedLeaveDays(int employeeId, int year)
         {
-            return _leaves
-                .Where(l => l.EmployeeId == employeeId &&
-                            l.Status == LeaveStatus.Approved &&
-                            l.LeaveType == LeaveType.Vacation &&
-                            l.StartDate.Year == year)
-                .Sum(l => (l.EndDate - l.StartDate).Days + 1);
+            int totalDays = 0;
+            foreach (var l in _storage.Leaves)
+            {
+                if (l.EmployeeId == employeeId && l.Status == LeaveStatus.Approved && l.LeaveType == LeaveType.Vacation && l.StartDate.Year == year)
+                {
+                    totalDays += l.DaysCount; // Използваме твоето пропърти DaysCount
+                }
+            }
+            return totalDays;
         }
 
-
-        public List<Leave> GetLeavesByPeriod(DateTime start, DateTime end)
+       
+        public int GetRemainingLeaveDays(int employeeId, int year)
         {
-            return _leaves.Where(l => l.StartDate >= start && l.EndDate <= end).ToList();
+            return MaxPaidLeaveDaysPerYear - GetUsedLeaveDays(employeeId, year);
         }
 
         public List<Leave> GetAllLeaves()
         {
-            return _leaves;
+            return _storage.Leaves;
         }
     }
+
 }
 

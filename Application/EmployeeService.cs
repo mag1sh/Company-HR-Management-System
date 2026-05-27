@@ -1,64 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CompanyHRManagementSystem.Employees.Domain.Entities;
 using CompanyHRManagementSystem.Employees.Domain.Enums;
-using Services.Interfaces;
+using CompanyHRManagementSystem.Employees.Infrastructure;
 
 namespace CompanyHRManagementSystem.Employees.Services
 {
     public class EmployeeService
     {
-        
-            private readonly List<Employee> _employees = new List<Employee>();
+        private readonly CompanyStorage _storage;
 
-            public void AddEmployee(Employee employee)
-            {
-                _employees.Add(employee);
-            }
-
-            public void UpdateEmployee(Employee updatedEmployee)
-            {
-                var employee = _employees.FirstOrDefault(e => e.Id == updatedEmployee.Id);
-
-                if (employee == null)
-                    throw new Exception("Employee not found");
-
-                employee.Name = updatedEmployee.Name;
-                employee.Email = updatedEmployee.Email;
-                employee.Address = updatedEmployee.Address;
-                employee.PhoneNumber = updatedEmployee.PhoneNumber;
-                employee.HireDate = updatedEmployee.HireDate;
-                employee.Status = updatedEmployee.Status;
-                employee.TerminationDate = updatedEmployee.TerminationDate;
+        public EmployeeService(CompanyStorage storage)
+        {
+            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
         }
 
-            public void DeactivateEmployee(int employeeId)
-            {
-                var employee = _employees.FirstOrDefault(e => e.Id == employeeId);
+        public void AddEmployee(Employee employee)
+        {
+            employee.Id = _storage.NextId++;
+            employee.Status = EmployeeStatus.Active;
 
-                if (employee == null)
-                    throw new Exception("Employee not found");
-
-                employee.Status = EmployeeStatus.Inactive;
-            }
-
-            public List<Employee> GetAllEmployees()
-            {
-                return _employees;
-            }
-
-            public Employee GetById(int employeeId)
-            {
-                var employee = _employees.FirstOrDefault(e => e.Id == employeeId);
-
-                if (employee == null)
-                    throw new Exception("Employee not found");
-
-                return employee;
-            }
+            _storage.Employees.Add(employee);
         }
+
+        public void UpdateEmployee(Employee updatedEmployee)
+        {
+            var employee = GetById(updatedEmployee.Id);
+
+            employee.Name = updatedEmployee.Name;
+            employee.Email = updatedEmployee.Email;
+            employee.Address = updatedEmployee.Address;
+            employee.PhoneNumber = updatedEmployee.PhoneNumber;
+            employee.HireDate = updatedEmployee.HireDate;
+        }
+
+        public void DeactivateEmployee(int employeeId)
+        {
+            var employee = GetById(employeeId);
+            employee.Status = EmployeeStatus.Inactive;
+            employee.TerminationDate = DateTime.Now;
+        }
+
+        public List<Employee> GetAllEmployees()
+        {
+            return _storage.Employees;
+        }
+
+        public Employee GetById(int employeeId)
+        {
+            foreach (var e in _storage.Employees)
+            {
+                if (e.Id == employeeId)
+                    return e;
+            }
+            throw new Exception("Служителят не е намерен!");
+        }
+
+
+        public List<Employee> GetActiveEmployees()
+        {
+            List<Employee> active = new List<Employee>();
+            foreach (var e in _storage.Employees)
+            {
+                if (e.Status == EmployeeStatus.Active)
+                    active.Add(e);
+            }
+            return active;
+        }
+    }
 }
-

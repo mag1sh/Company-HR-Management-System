@@ -3,51 +3,60 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CompanyHRManagementSystem.Employees.Infrastructure;
 using Domain.Entities;
 
 namespace CompanyHRManagementSystem.Application
 {
     public class PositionService
     {
-        private readonly List<Position> _positions = new List<Position>();
-        private int _nextId = 1;
-
+       
         
-        public void AddPosition(Position position)
-        {
-            if (string.IsNullOrWhiteSpace(position.Title))
-                throw new Exception("Името на длъжността не може да бъде празно!");
+            private readonly CompanyStorage _storage;
 
-            
-            foreach (var p in _positions)
+          
+            public PositionService(CompanyStorage storage)
             {
-                if (p.Title.Equals(position.Title, StringComparison.OrdinalIgnoreCase))
-                {
-                    throw new Exception($"Длъжност с име '{position.Title}' вече съществува!");
-                }
+                _storage = storage ?? throw new ArgumentNullException(nameof(storage));
             }
 
-            _positions.Add(position);
-        }
-
-        
-        public List<Position> GetAllPositions()
-        {
-            return _positions;
-        }
-
-        
-        public Position GetById(int positionId)
-        {
-            foreach (var p in _positions)
+           
+            public void AddPosition(Position position)
             {
-                if (p.Id == positionId) 
+                if (string.IsNullOrWhiteSpace(position.Title))
+                    throw new Exception("Името на длъжността не може да бъде празно!");
+
+
+                foreach (var p in _storage.Positions)
                 {
-                    return p;
+                    if (p.Title.Equals(position.Title, StringComparison.OrdinalIgnoreCase))
+                    {
+                        throw new Exception($"Длъжност с име '{position.Title}' вече съществува!");
+                    }
                 }
+
+                _storage.Positions.Add(position);
             }
 
-            throw new Exception("Избраната длъжност/позиция не съществува!");
+            public List<Position> GetAllPositions()
+            {
+                return _storage.Positions;
+            }
+
+           
+            public Position GetById(int positionId)
+            {
+                foreach (var p in _storage.Positions)
+                {
+                    
+                    if (p.Id == positionId)
+                    {
+                        return p;
+                    }
+                }
+
+                throw new Exception("Избраната длъжност/позиция не съществува!");
+            }
         }
     }
-}
+

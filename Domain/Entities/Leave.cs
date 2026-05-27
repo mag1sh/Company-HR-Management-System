@@ -12,11 +12,11 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
     {
         public int Id { get; private set; }
         public int EmployeeId { get; private set; }
-        public LeaveType LeaveType { get; private set; }
+        public LeaveType LeaveType { get;  set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
         public int DaysCount { get; set; }
-        public LeaveStatus Status { get; private set; }
+        public LeaveStatus Status { get;  set; }
 
         public Leave(int employeeId, LeaveType leaveType, DateTime startDate, DateTime endDate)
         {
