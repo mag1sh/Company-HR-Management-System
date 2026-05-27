@@ -27,6 +27,9 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
         public int PositionId { get;  set; }
 
         // Constructor
+        protected Employee()
+        {
+        }
         public Employee( FullName name, Email email, PhoneNumber phoneNumber, Address address,
                         DateTime hireDate, int departmentId, int positionId)
         {
