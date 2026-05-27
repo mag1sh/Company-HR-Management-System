@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.ConsoleUI
 {
-    internal class HRConsoleUI
+    public class HRConsoleUI
     {
     }
 }
