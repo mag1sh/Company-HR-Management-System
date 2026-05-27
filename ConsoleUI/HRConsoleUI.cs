@@ -18,6 +18,8 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
         public HRConsoleUI(EmployeeService employeeService)
         {
             _employeeService = employeeService;
+            
+            
         }
 
         public void Start()
@@ -42,8 +44,37 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                     case "2":
                         ShowAllEmployees();
                         break;
-
                     case "3":
+                        AddDepartment();
+                        break;
+                    case "4":
+                        EmployeesControl();
+                        break;
+                    case "5":
+                        DepartmentsEmployeesControl();
+                        break;
+                    case "6":
+                        ShowSalaryhistory();
+                        break;
+                    case "7":
+                        VacationRequests();
+                        break;
+                    case "8":
+                        vacationDaysForEveryEmployee();
+                        break;
+                    case "8":
+                        ApproveOrDenyVacantionRequsts();
+                        break;
+                    case "9":
+                        RegisterLeaveTypeRequests();
+                        break;
+                    case "9":
+                        ReferenceForEveryEmployeeByCondition();
+                        break;
+                    case "9":
+                        ShowEmploymentHistory();
+                        break;
+                    case "X":
                         return;
 
                     default:
@@ -55,7 +86,22 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             }
         }
 
+        private void AddDepartment()
+        {
+            Console.Write("Department Name: ");
+            string departmentName = Console.ReadLine();
 
+            Console.Write("Department Description: ");
+            string departmnetDescription = Console.ReadLine();
+
+            var department = new Department(
+               departmentName,
+               departmnetDescription);
+
+            Console.WriteLine("Department added successfully!");
+        }
+
+       
 
         private void AddEmployee()
         {
