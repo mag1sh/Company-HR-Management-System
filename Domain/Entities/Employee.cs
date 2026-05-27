@@ -12,15 +12,15 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
     {
         public int Id { get; private set; }
 
-        public FullName Name { get; private set; }
-        public Email Email { get; private set; }
-        public PhoneNumber PhoneNumber { get; private set; }
-        public Address Address { get; private set; }
+        public FullName Name { get;  set; }
+        public Email Email { get;  set; }
+        public PhoneNumber PhoneNumber { get;  set; }
+        public Address Address { get;  set; }
 
-        public DateTime HireDate { get; private set; }
-        public DateTime? TerminationDate { get; private set; }
+        public DateTime HireDate { get;  set; }
+        public DateTime? TerminationDate { get;  set; }
 
-        public EmployeeStatus Status { get; private set; }
+        public EmployeeStatus Status { get;  set; }
 
         public int DepartmentId { get; private set; }
         public int PositionId { get; private set; }
