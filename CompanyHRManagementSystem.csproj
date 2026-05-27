@@ -199,6 +199,11 @@
     <Compile Include="Infrastructure\SalaryRepository.cs" />
     <Compile Include="Application\EmployeeService.cs" />
     <Compile Include="Application\Interfaces\IEmployeeRepository.cs" />
+    <Compile Include="Migrations\20260527211008_InitialAllTables.cs" />
+    <Compile Include="Migrations\20260527211008_InitialAllTables.Designer.cs">
+      <DependentUpon>20260527211008_InitialAllTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CompanyStorageModelSnapshot.cs" />
     <Compile Include="Services\interfaces\IEmployeeService.cs" />
     <Compile Include="Application\Interfaces\ILeaveRepository.cs" />
     <Compile Include="Services\interfaces\ILeaveService.cs" />
