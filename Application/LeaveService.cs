@@ -76,7 +76,7 @@ namespace CompanyHRManagementSystem.Employees.Services
                     if (l.Status != LeaveStatus.Pending)
                         throw new Exception("Могат да се отказват само чакащи (Pending) заявки!");
 
-                    l.Reject(); // Използваме твоя метод от Домейна
+                    l.Reject(); 
                     return;
                 }
             }
@@ -91,7 +91,7 @@ namespace CompanyHRManagementSystem.Employees.Services
             {
                 if (l.EmployeeId == employeeId && l.Status == LeaveStatus.Approved && l.LeaveType == LeaveType.Vacation && l.StartDate.Year == year)
                 {
-                    totalDays += l.DaysCount; // Използваме твоето пропърти DaysCount
+                    totalDays += l.DaysCount; 
                 }
             }
             return totalDays;
@@ -105,7 +105,7 @@ namespace CompanyHRManagementSystem.Employees.Services
 
         public List<Leave> GetAllLeaves()
         {
-            return _storage.Leaves;
+            return _storage.Leaves.ToList();
         }
     }
 
