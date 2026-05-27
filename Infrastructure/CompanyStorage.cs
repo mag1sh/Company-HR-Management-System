@@ -31,6 +31,9 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
+            modelBuilder.Entity<Department>().HasKey(d => d.DepartmentId);
+
+            
             modelBuilder.Entity<Employee>().OwnsOne(e => e.Name);
             modelBuilder.Entity<Employee>().OwnsOne(e => e.Email);
             modelBuilder.Entity<Employee>().OwnsOne(e => e.PhoneNumber);

@@ -8,20 +8,29 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
 {
     public class Department
     {
-        public int DepartmentId = 1;
-        public string Name { get; private set; }
-        public string Description { get; private set; }
+        
+           
+            public int DepartmentId { get; private set; }
 
-        public List<Employee> Employees { get; private set; }
+            public string Name { get; private set; }
+            public string Description { get; private set; }
 
-        public Department( string name, string description)
-        {
-            DepartmentId = DepartmentId++;
-            Name = name;
-            Description = description;
-            Employees = new List<Employee>();
-        }
+      
+            public List<Employee> Employees { get; private set; }
+
+            protected Department()
+            {
+            }
+
+            public Department(string name, string description)
+            {
+               
+                Name = name;
+                Description = description;
+                Employees = new List<Employee>();
+            }
+     }
 
 
-    }
+    
 }
