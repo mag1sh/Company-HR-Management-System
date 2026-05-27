@@ -28,5 +28,15 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
                 );
             }
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+            modelBuilder.Entity<Employee>().OwnsOne(e => e.Name);
+            modelBuilder.Entity<Employee>().OwnsOne(e => e.Email);
+            modelBuilder.Entity<Employee>().OwnsOne(e => e.PhoneNumber);
+            modelBuilder.Entity<Employee>().OwnsOne(e => e.Address);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
