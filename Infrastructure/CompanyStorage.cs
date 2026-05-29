@@ -7,33 +7,32 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
     public class CompanyStorage : DbContext
     {
-        
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Leave> Leaves { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Salary> Salaries { get; set; }
+        public DbSet<EmploymentHistory> EmploymentHistories { get; set; }
+        public DbSet<SalaryHistory> SalaryHistories { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-               
                 optionsBuilder.UseSqlServer(
                     "Data Source=(localdb)\\mssqllocaldb;" +
-                    "Database=CompanyHRDb;" + 
-                    "Integrated Security=True;" + 
-                    "MultipleActiveResultSets=True;" + 
+                    "Database=CompanyHRDb;" +
+                    "Integrated Security=True;" +
+                    "MultipleActiveResultSets=True;" +
                     "Encrypt=True;" +
-                    "TrustServerCertificate=True;" 
+                    "TrustServerCertificate=True;"
                 );
             }
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
             modelBuilder.Entity<Department>().HasKey(d => d.DepartmentId);
-
-            
             modelBuilder.Entity<Employee>().OwnsOne(e => e.Name);
             modelBuilder.Entity<Employee>().OwnsOne(e => e.Email);
             modelBuilder.Entity<Employee>().OwnsOne(e => e.PhoneNumber);
