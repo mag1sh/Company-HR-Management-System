@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompanyHRManagementSystem.Employees.Domain.Entities;
+using System;
 
 namespace Domain.Entities
 {
@@ -7,6 +8,9 @@ namespace Domain.Entities
         public int Id { get; set; }
 
         public int EmployeeId { get; set; }
+
+        public virtual Employee Employee { get; set; }
+
 
         public decimal OldSalary { get; set; }
 
