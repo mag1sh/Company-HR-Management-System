@@ -11,7 +11,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
 {
     public class Employee
     {
-       // private static int _nextId = 1;
+        private static int _nextId = 1;
         public int Id { get;  set; }
 
         public FullName Name { get;  set; }
@@ -27,23 +27,21 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
         public int DepartmentId { get;  set; }
         public int PositionId { get;  set; }
 
-        public virtual Department Department { get; set; }
-        public virtual Position Position { get; set; }
-        public virtual Salary Salary { get; set; }
+        public  Department Department { get; set; }
+        public  Position Position { get; set; }
+        public  Salary Salary { get; set; }
 
-        public virtual ICollection<Leave> Leaves { get; set; }
-        public virtual ICollection<EmploymentHistory> EmploymentHistories { get; set; }
-        public virtual ICollection<SalaryHistory> SalaryHistories { get; set; }
+        public  ICollection<Leave> Leaves { get; set; }
+        public  ICollection<EmploymentHistory> EmploymentHistories { get; set; }
+        public  ICollection<SalaryHistory> SalaryHistories { get; set; }
 
         // Constructor
         protected Employee()
         {
-            Leaves = new HashSet<Leave>();
-            EmploymentHistories = new HashSet<EmploymentHistory>();
-            SalaryHistories = new HashSet<SalaryHistory>();
+           
         }
         public Employee( FullName name, Email email, PhoneNumber phoneNumber, Address address,
-                        DateTime hireDate, int departmentId, int positionId) : this()
+                        DateTime hireDate, int departmentId, int positionId) 
         {
             Id = _nextId++;
             Name = name;

@@ -13,7 +13,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
         public int Id { get; private set; }
         public int EmployeeId { get; private set; }
 
-        public virtual Employee Employee { get; private set; }
+        public  Employee Employee { get; private set; }
 
         public LeaveType LeaveType { get;  set; }
         public DateTime StartDate { get; private set; }

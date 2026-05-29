@@ -15,17 +15,17 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
             public string Name { get; private set; }
             public string Description { get; private set; }
 
-          public virtual ICollection<Employee> Employees { get; private set; }
+          public  ICollection<Employee> Employees { get; private set; }
 
 
          // public List<Employee> Employees { get; private set; }
 
             protected Department()
             {
-              Employees = new HashSet<Employee>();
+              
             }
 
-            public Department(string name, string description) : this()
+            public Department(string name, string description)
         {
                
                 Name = name;

@@ -12,11 +12,11 @@ namespace Domain.Entities
         public string Description { get; set; }
 
         public decimal BaseSalary { get; set; }
-        public virtual ICollection<Employee> Employees { get; set; }
+        public  ICollection<Employee> Employees { get; set; }
 
         protected Position()
         {
-            Employees = new HashSet<Employee>();
+           
         }
 
         public Position(int id, string title, string description, decimal baseSalary) : this()
