@@ -203,6 +203,10 @@
     <Compile Include="Migrations\20260527211008_InitialAllTables.Designer.cs">
       <DependentUpon>20260527211008_InitialAllTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20260529151028_AddNavigationPropertiesAndHistory.cs" />
+    <Compile Include="Migrations\20260529151028_AddNavigationPropertiesAndHistory.Designer.cs">
+      <DependentUpon>20260529151028_AddNavigationPropertiesAndHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CompanyStorageModelSnapshot.cs" />
     <Compile Include="Services\interfaces\IEmployeeService.cs" />
     <Compile Include="Application\Interfaces\ILeaveRepository.cs" />

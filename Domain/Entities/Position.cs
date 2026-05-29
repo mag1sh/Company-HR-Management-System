@@ -28,7 +28,7 @@ namespace Domain.Entities
             if (baseSalary < 0)
                 throw new ArgumentException("Salary cannot be negative");
 
-            Id = id;
+           // Id = id;
             Title = title;
             Description = description;
             BaseSalary = baseSalary;

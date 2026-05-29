@@ -11,7 +11,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
 {
     public class Employee
     {
-        private static int _nextId = 1;
+       // private static int _nextId = 1;
         public int Id { get;  set; }
 
         public FullName Name { get;  set; }
@@ -43,7 +43,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
         public Employee( FullName name, Email email, PhoneNumber phoneNumber, Address address,
                         DateTime hireDate, int departmentId, int positionId) 
         {
-            Id = _nextId++;
+            //Id = _nextId++;
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;
