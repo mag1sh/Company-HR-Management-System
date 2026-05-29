@@ -25,8 +25,8 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
               Employees = new HashSet<Employee>();
             }
 
-            public Department(string name, string description)
-            {
+            public Department(string name, string description) : this()
+        {
                
                 Name = name;
                 Description = description;

@@ -43,7 +43,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
             SalaryHistories = new HashSet<SalaryHistory>();
         }
         public Employee( FullName name, Email email, PhoneNumber phoneNumber, Address address,
-                        DateTime hireDate, int departmentId, int positionId)
+                        DateTime hireDate, int departmentId, int positionId) : this()
         {
             Id = _nextId++;
             Name = name;

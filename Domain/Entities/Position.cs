@@ -19,7 +19,7 @@ namespace Domain.Entities
             Employees = new HashSet<Employee>();
         }
 
-        public Position(int id, string title, string description, decimal baseSalary)
+        public Position(int id, string title, string description, decimal baseSalary) : this()
         {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("Title cannot be empty");
