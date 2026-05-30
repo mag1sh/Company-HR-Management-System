@@ -20,7 +20,7 @@ namespace Domain.Entities
            
         }
 
-        public Position(int id, string title, string description, decimal baseSalary) : this()
+        public Position( string title, string description, decimal baseSalary) : this()
         {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("Title cannot be empty");

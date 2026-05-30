@@ -36,6 +36,7 @@ namespace CompanyHRManagementSystem.Application
             }
 
             _storage.Departments.Add(department);
+            _storage.SaveChanges();
         }
 
         public List<Department> GetAllDepartments()

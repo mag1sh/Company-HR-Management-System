@@ -36,6 +36,7 @@ namespace CompanyHRManagementSystem.Application
                 }
 
                 _storage.Positions.Add(position);
+                _storage.SaveChanges(); 
             }
 
             public List<Position> GetAllPositions()

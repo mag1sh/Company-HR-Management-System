@@ -47,6 +47,8 @@ namespace CompanyHRManagementSystem.Employees.Services
             }
 
             _storage.Leaves.Add(leave);
+            _storage.SaveChanges();
+
         }
 
        
@@ -76,7 +78,8 @@ namespace CompanyHRManagementSystem.Employees.Services
                     if (l.Status != LeaveStatus.Pending)
                         throw new Exception("Могат да се отказват само чакащи (Pending) заявки!");
 
-                    l.Reject(); 
+                    l.Reject();
+                    _storage.SaveChanges();
                     return;
                 }
             }

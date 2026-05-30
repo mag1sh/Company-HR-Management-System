@@ -34,7 +34,8 @@ namespace CompanyHRManagementSystem.Employees.Services
             employee.Address = updatedEmployee.Address;
             employee.PhoneNumber = updatedEmployee.PhoneNumber;
             employee.HireDate = updatedEmployee.HireDate;
-
+            employee.DepartmentId = updatedEmployee.DepartmentId;
+            employee.PositionId = updatedEmployee.PositionId;
             _storage.SaveChanges();
         }
 

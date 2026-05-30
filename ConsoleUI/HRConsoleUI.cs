@@ -8,6 +8,7 @@ using CompanyHRManagementSystem.Employees.Domain.Entities;
 using CompanyHRManagementSystem.Employees.Domain.ValueObjects;
 using CompanyHRManagementSystem.Employees.Infrastructure;
 using CompanyHRManagementSystem.Employees.Services;
+using Domain.Entities;
 
 namespace CompanyHRManagementSystem.Employees.ConsoleUI
 {
@@ -48,6 +49,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 Console.WriteLine("10. Register Illness/Unpaid Leaves");
                 Console.WriteLine("11. Advanced Reference for Employees by Conditions");
                 Console.WriteLine("12. Show Career Employment History");
+                Console.WriteLine("13. Add Position");
                 Console.WriteLine("X. Exit");
 
                 Console.Write("Choose option: ");
@@ -93,6 +95,9 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                     case "12":
                        // ShowEmploymentHistory();
                         break;
+                    case "13": 
+                        AddPosition();
+                        break;
                     case "X":
                         return;
 
@@ -136,6 +141,37 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 default:
                     Console.WriteLine("Invalid option!");
                     break;
+            }
+        }
+        private void AddPosition()
+        {
+            Console.WriteLine("\n--- Add New Position ---");
+
+            Console.Write("Position Title (e.g. C# Developer): ");
+            string title = Console.ReadLine();
+
+            Console.Write("Position Description: ");
+            string description = Console.ReadLine();
+
+            Console.Write("Base Salary for this position (euro): ");
+            if (!decimal.TryParse(Console.ReadLine(), out decimal baseSalary))
+            {
+                Console.WriteLine("Invalid salary format! Position creation aborted.");
+                return;
+            }
+
+            try
+            {
+                
+                var position = new Position(title, description, baseSalary);
+
+                _positionService.AddPosition(position);
+                Console.WriteLine($"Position added successfully! Its REAL ID is: {position.Id}");
+                //Console.WriteLine($"Position '{title}' added successfully!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
 
@@ -215,7 +251,8 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                departmnetDescription);
 
             _departmentService.AddDepartment(department);
-            Console.WriteLine("Department added successfully!");
+            Console.WriteLine($"Department added successfully! Its REAL ID is: {department.DepartmentId}");
+           // Console.WriteLine("Department added successfully!");
             
         }
 

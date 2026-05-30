@@ -24,7 +24,7 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
                     "Database=CompanyHRDb;" +
                     "Integrated Security=True;" +
                     "MultipleActiveResultSets=True;" +
-                    "Encrypt=True;" +
+                    "Encrypt=False;" +
                     "TrustServerCertificate=True;"
                 );
             }
