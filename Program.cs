@@ -19,7 +19,7 @@ namespace CompanyHRManagementSystem
 
         static void Main(string[] args)
         {
-            using (var context = new CompanyStorage()) // Напиши името на твоя DbContext
+            using (var context = new CompanyStorage()) 
             {
                 context.Database.Migrate();
             }
