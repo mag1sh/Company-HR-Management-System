@@ -81,10 +81,12 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                         // ShowSalaryhistory();
                         break;
                     case "7":
-                      //  VacationRequests();
+                        CheckAvailableVacationDaysForEmployee();
+                        //  VacationRequests();
                         break;
                     case "8":
-                       // vacationDaysForEveryEmployee();
+                        ApproveOrDenyVacantionRequsts();
+                        // vacationDaysForEveryEmployee();
                         break;
                     case "9":
                        // ApproveOrDenyVacantionRequsts();
@@ -99,8 +101,8 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                          ShowEmployeesByDepartmentOrPosition();
                         // ShowEmploymentHistory();
                         break;
-                    case "13": 
-                        //
+                    case "13":
+                        ShowLeaveRequestsByPeriod();
                         break;
                     case "X":
                         return;
@@ -112,6 +114,70 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
                 Console.WriteLine();
             }
+        }
+
+        private void ShowLeaveRequestsByPeriod()
+        {
+            //Console.Clear();
+            //Console.WriteLine("--- Показване на заявки за отпуск по период ---");
+            //Console.Write("Enter Start Date (yyyy-MM-dd): ");
+            //DateTime startDate = DateTime.Parse(Console.ReadLine());
+            //Console.Write("Enter End Date (yyyy-MM-dd): ");
+            //DateTime endDate = DateTime.Parse(Console.ReadLine());
+            //var leaves = _leaveService.GetLeavesByPeriod(startDate, endDate);
+            //if (leaves.Count == 0)
+            //{
+            //    Console.WriteLine("No leave requests found for the specified period.");
+            //    return;
+            //}
+            //Console.WriteLine($"Leave requests from {startDate:yyyy-MM-dd} to {endDate:yyyy-MM-dd}:");
+            //foreach (var leave in leaves)
+            //{
+            //    var employee = _employeeService.GetById(leave.EmployeeId);
+            //    Console.WriteLine($"Employee: {employee.Name}, Leave Type: {leave.LeaveType}, Start: {leave.StartDate:yyyy-MM-dd}, End: {leave.EndDate:yyyy-MM-dd}, Status: {leave.Status}");
+            //}
+            //Console.ReadLine();
+        }
+
+        private void ApproveOrDenyVacantionRequsts()
+        {
+            Console.Clear();
+            Console.WriteLine("--- Одобряване или отказване на заявка за отпуск ---");
+            Console.Write("Enter Leave id: ");
+            int leaveId = int.Parse(Console.ReadLine());
+            Console.Write("Approve (Yes/No): ");
+            string approveInput = Console.ReadLine();
+            bool approve = approveInput.Equals("Yes", StringComparison.OrdinalIgnoreCase);
+            try
+            {
+                if (approve)
+                {
+                    _leaveService.ApproveLeave(leaveId);
+                    Console.WriteLine("Leave request approved successfully!");
+                }
+                else
+                {
+                    _leaveService.RejectLeave(leaveId);
+                    Console.WriteLine("Leave request denied successfully!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            Console.ReadLine();
+        }
+
+        private void CheckAvailableVacationDaysForEmployee()
+        {
+            Console.Clear();
+            Console.WriteLine("--- Проверка за налични дни отпуск за служител ---");
+            Console.Write("Enter Employee id: ");
+            int employeeId = int.Parse(Console.ReadLine());
+            int usedDays = _leaveService.GetUsedLeaveDays(employeeId, DateTime.Now.Year);
+            int remainingDays = 20 - usedDays;
+            Console.WriteLine($"You have {remainingDays} paid leave days remaining for this year.");
+            Console.ReadLine();
         }
 
         private void VacationRequestByEmployee()
