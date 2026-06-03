@@ -48,9 +48,9 @@ namespace CompanyHRManagementSystem.Employees.Services
             _storage.SaveChanges();
         }
 
-        public List<Employee> GetAllEmployees()
+        public List<Employee> GetAllActiveEmployees()
         {
-            return _storage.Employees.ToList();
+            return _storage.Employees.Where(e => e.Status == EmployeeStatus.Active).ToList();
         }
 
         public Employee GetById(int employeeId)
