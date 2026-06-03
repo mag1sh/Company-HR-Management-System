@@ -36,23 +36,31 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
         {
             while (true)
             {
-                Console.WriteLine("\n===== HR Management System =====");
-                Console.WriteLine("1. Add Employee");
-                Console.WriteLine("2. Show All Employees");
-                Console.WriteLine("3. Add Department");
-                Console.WriteLine("4. Employees Management (Edit/Fire/Salary)");
-                Console.WriteLine("5. Reference: Employees by Department & Position");
-                Console.WriteLine("6. Show Salary History");
-                Console.WriteLine("7. Request Vacation/Leave");
-                Console.WriteLine("8. Show Remaining Vacation Days for All");
-                Console.WriteLine("9. Approve or Deny Vacation Requests");
-                Console.WriteLine("10. Register Illness/Unpaid Leaves");
-                Console.WriteLine("11. Advanced Reference for Employees by Conditions");
-                Console.WriteLine("12. Show Career Employment History");
-                Console.WriteLine("13. Add Position");
-                Console.WriteLine("X. Exit");
+                Console.Clear();
+                Console.WriteLine("===== HR Management System =====");
+                Console.WriteLine("1. Добавяне на нов служител");
+                Console.WriteLine("2. Добавяне на отдел");
+                Console.WriteLine("3. Добавяне на позиция");
+                Console.WriteLine("4. Показване на всички служители");
+                Console.WriteLine("5. Редактиране на служител");
+                Console.WriteLine("6. Редактиране на позиция или отдел на служител");
+                Console.WriteLine("7. Подаване на заявка за отпуск от служител");
+                Console.WriteLine("8. Проверка за налични дни отпуск за служител");
+                Console.WriteLine("9. Одобряване или отказване на заявка за отпуск");
+                Console.WriteLine("10. Проверка за конфликт на отпуски в отдел");
+                Console.WriteLine("11. Регистриране на болничен или неплатен отпуск");
+                Console.WriteLine("12. Изчисляване на оставащи дни отпуск за служител");
+                Console.WriteLine("13. Генериране на справка на всички активни служители");
+                Console.WriteLine("14. Генериране на справка за служители по отдел и позиция");
+                Console.WriteLine("15. Генериране на справка за отпуски по период");
+                Console.WriteLine("16. Генериране за справка за текучество на персонала");
+                Console.WriteLine("17. Проследяване на трудовия стаж на служител от компанията");
+                Console.WriteLine("18. История за кадровите промени за конкретен служител");
+                Console.WriteLine("19. Show Salary History");
+                Console.WriteLine("20. Advanced Reference for Employees by Conditions");
+                Console.WriteLine("X. Изход");
 
-                Console.Write("Choose option: ");
+                Console.Write("Избери опция: ");
 
                 string choice = Console.ReadLine();
 
@@ -61,18 +69,18 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                     case "1":
                         AddEmployee();
                         break;
-
                     case "2":
-                        ShowAllEmployees();
-                        break;
-                    case "3":
                         AddDepartment();
                         break;
+                    case "3":
+                        AddPosition();
+                        break;
                     case "4":
-                        EmployeesControl();
+                        ShowAllEmployees();
                         break;
                     case "5":
-                       // DepartmentsEmployeesControl();
+                        EmployeesControl();
+                        // DepartmentsEmployeesControl();
                         break;
                     case "6":
                        // ShowSalaryhistory();
@@ -96,7 +104,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                        // ShowEmploymentHistory();
                         break;
                     case "13": 
-                        AddPosition();
+                        //
                         break;
                     case "X":
                         return;
@@ -339,6 +347,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                     $"{employee.Name.ToString()} | " +
                     $"{employee.Email}");
             }
+            Console.ReadLine();
         }
 
 
