@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CompanyHRManagementSystem.Application;
 using CompanyHRManagementSystem.Employees.Domain.Entities;
+using CompanyHRManagementSystem.Employees.Domain.Enums;
 using CompanyHRManagementSystem.Employees.Domain.ValueObjects;
-using CompanyHRManagementSystem.Employees.Infrastructure;
 using CompanyHRManagementSystem.Employees.Services;
 using Domain.Entities;
 
@@ -14,8 +11,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 {
     public class HRConsoleUI
     {
-
-       private readonly EmployeeService _employeeService;
+        private readonly EmployeeService _employeeService;
         private readonly DepartmentService _departmentService;
         private readonly PositionService _positionService;
         private readonly LeaveService _leaveService;
@@ -41,26 +37,24 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 Console.WriteLine("1. Добавяне на нов служител");
                 Console.WriteLine("2. Добавяне на отдел");
                 Console.WriteLine("3. Добавяне на позиция");
-                Console.WriteLine("4. Показване на всички служители");
+                Console.WriteLine("4. Показване на всички активни служители");
                 Console.WriteLine("5. Редактиране на служител");
-                Console.WriteLine("6. Редактиране на позиция или отдел на служител");
-                Console.WriteLine("7. Подаване на заявка за отпуск от служител");
-                Console.WriteLine("8. Проверка за налични дни отпуск за служител");
-                Console.WriteLine("9. Одобряване или отказване на заявка за отпуск");
-                Console.WriteLine("10. Проверка за конфликт на отпуски в отдел");
-                Console.WriteLine("11. Регистриране на болничен или неплатен отпуск");
-                Console.WriteLine("12. Изчисляване на оставащи дни отпуск за служител");
-                Console.WriteLine("13. Генериране на справка на всички активни служители");
-                Console.WriteLine("14. Генериране на справка за служители по отдел и позиция");
-                Console.WriteLine("15. Генериране на справка за отпуски по период");
-                Console.WriteLine("16. Генериране за справка за текучество на персонала");
-                Console.WriteLine("17. Проследяване на трудовия стаж на служител от компанията");
-                Console.WriteLine("18. История за кадровите промени за конкретен служител");
-                Console.WriteLine("19. Show Salary History");
-                Console.WriteLine("20. Advanced Reference for Employees by Conditions");
+                Console.WriteLine("6. Подаване на заявка за отпуск от служител");
+                Console.WriteLine("7. Проверка за налични дни отпуск за служител");
+                Console.WriteLine("8. Одобряване или отказване на заявка за отпуск");
+                Console.WriteLine("9. Проверка за конфликт на отпуски в отдел");
+                Console.WriteLine("10. Регистриране на болничен или неплатен отпуск");
+                Console.WriteLine("11. Изчисляване на оставащи дни отпуск за служител");
+                Console.WriteLine("12. Генериране на справка за служители по отдел или позиция");
+                Console.WriteLine("13. Генериране на справка за отпуски по период");
+                Console.WriteLine("14. Генериране за справка за текучество на персонала");
+                Console.WriteLine("15. Проследяване на трудовия стаж на служител от компанията");
+                Console.WriteLine("16. История за кадровите промени за конкретен служител");
+                //Console.WriteLine("19. Show Salary History");
+                //Console.WriteLine("20. Advanced Reference for Employees by Conditions");
                 Console.WriteLine("X. Изход");
 
-                Console.Write("Избери опция: ");
+                Console.Write("Choose option: ");
 
                 string choice = Console.ReadLine();
 
@@ -76,14 +70,15 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                         AddPosition();
                         break;
                     case "4":
-                        ShowAllEmployees();
+                        ShowAllActiveEmployees();
                         break;
                     case "5":
                         EmployeesControl();
                         // DepartmentsEmployeesControl();
                         break;
                     case "6":
-                       // ShowSalaryhistory();
+                        VacationRequestByEmployee();
+                        // ShowSalaryhistory();
                         break;
                     case "7":
                       //  VacationRequests();
@@ -101,7 +96,8 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                        // ReferenceForEveryEmployeeByCondition();
                         break;
                     case "12":
-                       // ShowEmploymentHistory();
+                         ShowEmployeesByDepartmentOrPosition();
+                        // ShowEmploymentHistory();
                         break;
                     case "13": 
                         //
@@ -118,14 +114,127 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             }
         }
 
+        private void VacationRequestByEmployee()
+        {
+            Console.Clear();
+            Console.WriteLine("--- Подаване на заявка за отпуск от служител ---");
+            Console.Write("Enter Employee id: ");
+            int employeeId = int.Parse(Console.ReadLine());
+            Console.Write("Enter Start Date (yyyy-MM-dd): ");
+            DateTime startDate = DateTime.Parse(Console.ReadLine());
+            Console.Write("Enter End Date (yyyy-MM-dd): ");
+            DateTime endDate = DateTime.Parse(Console.ReadLine());
+            Console.Write("Enter Leave Type (Vacation/Sick/Unpaid): ");
+            string leaveTypeInput = Console.ReadLine();
+            LeaveType leaveType;
+            switch (leaveTypeInput.ToLower())
+            {
+                case "vacation":
+                    leaveType = LeaveType.Vacation;
+                    break;
+                case "sick":
+                    leaveType = LeaveType.Sick;
+                    break;
+                case "unpaid":
+                    leaveType = LeaveType.Unpaid;
+                    break;
+                default:
+                    Console.WriteLine("Invalid leave type!");
+                    return;
+            }
+            var leave = new Leave(employeeId, leaveType, startDate, endDate);
+            try
+            {
+                _leaveService.RequestLeave(leave);
+                Console.WriteLine("Leave request submitted successfully!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            Console.ReadLine();
+        }
+
+        private void ShowEmployeesByDepartmentOrPosition()
+        {
+            Console.Clear();
+            Console.WriteLine("--- Показване на служители по отдел или позиция ---");
+            Console.WriteLine("1. Показване на служител по отдел");
+            Console.WriteLine("2. Показване на служител по позиция");
+            Console.WriteLine("X. Назад към главното меню");
+            Console.Write("Choose option: ");
+
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    ShowEmployeesByDepartment();
+                    break;
+                case "2":
+                    ShowEmployeesByPosition();
+                    break;
+                case "X":
+                    return;
+                default:
+                    Console.WriteLine("Invalid option!");
+                    break;
+            }
+        }
+
+
+        private void ShowEmployeesByDepartment()
+        {
+            Console.Clear();
+            Console.WriteLine("--- Показване на служители по отдел ---");
+            Console.Write("Enter Department id: ");
+            int departmentId = int.Parse(Console.ReadLine());
+            var employees = _employeeService.GetAllActiveEmployees()
+                .Where(e => e.DepartmentId == departmentId)
+                .ToList();
+            if (employees.Count == 0)
+            {
+                Console.WriteLine("No employees found for the specified department.");
+                return;
+            }
+            Console.WriteLine($"Employees in Department {departmentId}:");
+            foreach (var employee in employees)
+            {
+                Console.WriteLine($"{employee.Id} | {employee.Name} | {employee.Email} | {employee.PhoneNumber.Number}");
+            }
+            Console.ReadLine();
+        }
+
+        private void ShowEmployeesByPosition()
+        {
+            Console.Clear();
+            Console.WriteLine("--- Показване на служители по позиция ---");
+            Console.Write("Enter Position id: ");
+            int positionId = int.Parse(Console.ReadLine());
+            var employees = _employeeService.GetAllActiveEmployees()
+                .Where(e => e.PositionId == positionId)
+                .ToList();
+            if (employees.Count == 0)
+            {
+                Console.WriteLine("No employees found for the specified position.");
+                return;
+            }
+            Console.WriteLine($"Employees in Position {positionId}:");
+            foreach (var employee in employees)
+            {
+                Console.WriteLine($"{employee.Id} | {employee.Name} | {employee.Email} | {employee.PhoneNumber.Number}");
+            }
+            Console.ReadLine();
+        }
+
         private void EmployeesControl()
         {
-            Console.WriteLine("\n--- Employees Control Menu ---");
-            Console.WriteLine("1. Edit Employee Personal Data");
-            Console.WriteLine("2. Deactivate / Fire Employee");
-            Console.WriteLine("3. Change Employee Department and Position");
-            Console.WriteLine("4. Change Employee Base Salary");
-            Console.WriteLine("X. Back to Main Menu");
+            Console.Clear();
+            Console.WriteLine("--- Employees Control Menu ---");
+            Console.WriteLine("1. Редактиране на лични данни на служител");
+            Console.WriteLine("2. Деактивиране / Уволняване на служител");
+            Console.WriteLine("3. Смяна на отдел и позиция на служител");
+            Console.WriteLine("4. Смяна на основна заплата на служител");
+            Console.WriteLine("X. Назад към главното меню");
             Console.Write("Choose option: ");
 
             string choice = Console.ReadLine();
@@ -143,7 +252,6 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 case "4":
                     ChangeEmployeeSalary();
                     break;
-
                 case "X":
                     return;
                 default:
@@ -169,8 +277,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             }
 
             try
-            {
-                
+            {    
                 var position = new Position(title, description, baseSalary);
 
                 _positionService.AddPosition(position);
@@ -181,11 +288,34 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
+            Console.ReadLine();
         }
 
         private void ChangeEmployeeSalary()
         {
-            
+            try
+            {
+                Console.Write("Enter Employee id: ");
+                int employeeId = int.Parse(Console.ReadLine());
+                Employee employee = _employeeService.GetById(employeeId);
+
+                Console.Write("Enter new Salary (euro): ");
+                decimal newSalary = decimal.Parse(Console.ReadLine());
+                //if (!decimal.TryParse(Console.ReadLine(), out decimal newSalary))
+                //{
+                //    Console.WriteLine("Invalid salary format!");
+                //    return;
+                //}
+
+                employee.Salary.Amount = newSalary;
+                _employeeService.UpdateEmployee(employee);
+                Console.WriteLine("Employee's salary updated successfully!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            Console.ReadLine();
         }
 
         private void ChangeEmployeeDepartmentAndPosition()
@@ -217,6 +347,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
+            Console.ReadLine();
         }
 
         private void EditEmployee()
@@ -238,7 +369,9 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
+            Console.ReadLine();
         }
+
         private void DeactivateOrFireEmployee()
         {
             Console.Write("Enter Employee id: ");
@@ -260,8 +393,8 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
             _departmentService.AddDepartment(department);
             Console.WriteLine($"Department added successfully! Its REAL ID is: {department.DepartmentId}");
-           // Console.WriteLine("Department added successfully!");
-            
+            // Console.WriteLine("Department added successfully!");
+            Console.ReadLine();
         }
 
        public Employee GetEmployeInfo()
@@ -308,12 +441,9 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 street,
                 streetNumber);
 
-
-
             FullName name = new FullName(firstName, lastName);
             DateTime hiredate = DateTime.Now;
             PhoneNumber phoneNumber = new PhoneNumber(phone);
-
 
             var employee = new Employee(
                  name,
@@ -336,22 +466,16 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             Console.WriteLine("Employee added successfully!");
         }
     
-        private void ShowAllEmployees()
+        private void ShowAllActiveEmployees()
         {
-            var employees = _employeeService.GetAllEmployees();
+            var employees = _employeeService.GetAllActiveEmployees();
 
             foreach (var employee in employees)
             {
-                Console.WriteLine(
-                    $"{employee.Id} | " +
-                    $"{employee.Name.ToString()} | " +
-                    $"{employee.Email}");
+                Console.WriteLine($"{employee.Id} | {employee.Department.Name} | {employee.Name} | {employee.Salary.Amount} | {employee.Email}");
             }
             Console.ReadLine();
         }
-
-
-
     } 
 }
 
