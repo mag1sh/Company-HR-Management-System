@@ -20,12 +20,14 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(
-                    "Data Source=(localdb)\\mssqllocaldb;" +
-                    "Database=CompanyHRDb;" +
-                    "Integrated Security=True;" +
-                    "MultipleActiveResultSets=True;" +
-                    "Encrypt=False;" +
-                    "TrustServerCertificate=True;"
+                    //"Data Source=(localdb)\\mssqllocaldb;" +
+                    //"Database=CompanyHRDb;" +
+                    //"Integrated Security=True;" +
+                    //"MultipleActiveResultSets=True;" +
+                    //"Encrypt=False;" +
+                    //"TrustServerCertificate=True;"
+
+                    "Data Source=K207\\SQLEXPRESS;Database=CompanyHRDb;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;"
                 );
             }
         }
