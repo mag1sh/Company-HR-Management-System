@@ -1,0 +1,525 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\magi svetlio hrmc\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\infrastructure\\salaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:infrastructure\\salaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\services\\interfaces\\ileaveservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:services\\interfaces\\ileaveservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\services\\interfaces\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:services\\interfaces\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\infrastructure\\positionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:infrastructure\\positionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\infrastructure\\leaverepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:infrastructure\\leaverepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\infrastructure\\filestorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:infrastructure\\filestorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\infrastructure\\fileemployeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:infrastructure\\fileemployeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\infrastructure\\filedepartmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:infrastructure\\filedepartmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\infrastructure\\companystorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:infrastructure\\companystorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\valueobjects\\phonenumber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\valueobjects\\phonenumber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\valueobjects\\fullname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\valueobjects\\fullname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\valueobjects\\email.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\valueobjects\\email.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\valueobjects\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\valueobjects\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\enums\\leavetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\enums\\leavetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\enums\\leavestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\enums\\leavestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\enums\\employmenttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\enums\\employmenttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\enums\\employeestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\enums\\employeestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\entities\\salaryhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\entities\\salaryhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\entities\\salary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\entities\\salary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\entities\\position.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\entities\\position.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\entities\\leave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\entities\\leave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\entities\\employmenthistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\entities\\employmenthistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\entities\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\entities\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\domain\\entities\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:domain\\entities\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\consoleui\\hrconsoleui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:consoleui\\hrconsoleui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\application\\positionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:application\\positionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\application\\leaveservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:application\\leaveservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\application\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:application\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|d:\\magi svetlio hrmc\\application\\departmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}|CompanyHRManagementSystem.csproj|solutionrelative:application\\departmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ILeaveService.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Services\\interfaces\\ILeaveService.cs",
+              "RelativeDocumentMoniker": "Services\\interfaces\\ILeaveService.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Services\\interfaces\\ILeaveService.cs",
+              "RelativeToolTip": "Services\\interfaces\\ILeaveService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:33.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IEmployeeService.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Services\\interfaces\\IEmployeeService.cs",
+              "RelativeDocumentMoniker": "Services\\interfaces\\IEmployeeService.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Services\\interfaces\\IEmployeeService.cs",
+              "RelativeToolTip": "Services\\interfaces\\IEmployeeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:33.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SalaryRepository.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Infrastructure\\SalaryRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\SalaryRepository.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Infrastructure\\SalaryRepository.cs",
+              "RelativeToolTip": "Infrastructure\\SalaryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:28.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PositionRepository.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Infrastructure\\PositionRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\PositionRepository.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Infrastructure\\PositionRepository.cs",
+              "RelativeToolTip": "Infrastructure\\PositionRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:27.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LeaveRepository.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Infrastructure\\LeaveRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\LeaveRepository.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Infrastructure\\LeaveRepository.cs",
+              "RelativeToolTip": "Infrastructure\\LeaveRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:26.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FileStorage.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Infrastructure\\FileStorage.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\FileStorage.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Infrastructure\\FileStorage.cs",
+              "RelativeToolTip": "Infrastructure\\FileStorage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:26.441Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FileEmployeeRepository.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Infrastructure\\FileEmployeeRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\FileEmployeeRepository.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Infrastructure\\FileEmployeeRepository.cs",
+              "RelativeToolTip": "Infrastructure\\FileEmployeeRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:25.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FileDepartmentRepository.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Infrastructure\\FileDepartmentRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\FileDepartmentRepository.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Infrastructure\\FileDepartmentRepository.cs",
+              "RelativeToolTip": "Infrastructure\\FileDepartmentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:25.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CompanyStorage.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Infrastructure\\CompanyStorage.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\CompanyStorage.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Infrastructure\\CompanyStorage.cs",
+              "RelativeToolTip": "Infrastructure\\CompanyStorage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:24.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PhoneNumber.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\ValueObjects\\PhoneNumber.cs",
+              "RelativeDocumentMoniker": "Domain\\ValueObjects\\PhoneNumber.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\ValueObjects\\PhoneNumber.cs",
+              "RelativeToolTip": "Domain\\ValueObjects\\PhoneNumber.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:23.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FullName.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\ValueObjects\\FullName.cs",
+              "RelativeDocumentMoniker": "Domain\\ValueObjects\\FullName.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\ValueObjects\\FullName.cs",
+              "RelativeToolTip": "Domain\\ValueObjects\\FullName.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:22.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Email.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\ValueObjects\\Email.cs",
+              "RelativeDocumentMoniker": "Domain\\ValueObjects\\Email.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\ValueObjects\\Email.cs",
+              "RelativeToolTip": "Domain\\ValueObjects\\Email.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:21.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Address.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\ValueObjects\\Address.cs",
+              "RelativeDocumentMoniker": "Domain\\ValueObjects\\Address.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\ValueObjects\\Address.cs",
+              "RelativeToolTip": "Domain\\ValueObjects\\Address.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:20.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LeaveType.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Enums\\LeaveType.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\LeaveType.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Enums\\LeaveType.cs",
+              "RelativeToolTip": "Domain\\Enums\\LeaveType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:18.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "LeaveStatus.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Enums\\LeaveStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\LeaveStatus.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Enums\\LeaveStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\LeaveStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:17.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EmploymentType.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Enums\\EmploymentType.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\EmploymentType.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Enums\\EmploymentType.cs",
+              "RelativeToolTip": "Domain\\Enums\\EmploymentType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:17.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "EmployeeStatus.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Enums\\EmployeeStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\Enums\\EmployeeStatus.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Enums\\EmployeeStatus.cs",
+              "RelativeToolTip": "Domain\\Enums\\EmployeeStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:16.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "SalaryHistory.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Entities\\SalaryHistory.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\SalaryHistory.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Entities\\SalaryHistory.cs",
+              "RelativeToolTip": "Domain\\Entities\\SalaryHistory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:14.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Salary.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Entities\\Salary.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Salary.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Entities\\Salary.cs",
+              "RelativeToolTip": "Domain\\Entities\\Salary.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:14.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Position.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Entities\\Position.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Position.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Entities\\Position.cs",
+              "RelativeToolTip": "Domain\\Entities\\Position.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:13.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Leave.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Entities\\Leave.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Leave.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Entities\\Leave.cs",
+              "RelativeToolTip": "Domain\\Entities\\Leave.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:12.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "EmploymentHistory.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Entities\\EmploymentHistory.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\EmploymentHistory.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Entities\\EmploymentHistory.cs",
+              "RelativeToolTip": "Domain\\Entities\\EmploymentHistory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:12.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Entities\\Employee.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Employee.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Entities\\Employee.cs",
+              "RelativeToolTip": "Domain\\Entities\\Employee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:11.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Department.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Domain\\Entities\\Department.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Department.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Domain\\Entities\\Department.cs",
+              "RelativeToolTip": "Domain\\Entities\\Department.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:11.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "HRConsoleUI.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\ConsoleUI\\HRConsoleUI.cs",
+              "RelativeDocumentMoniker": "ConsoleUI\\HRConsoleUI.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\ConsoleUI\\HRConsoleUI.cs",
+              "RelativeToolTip": "ConsoleUI\\HRConsoleUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:09.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "PositionService.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Application\\PositionService.cs",
+              "RelativeDocumentMoniker": "Application\\PositionService.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Application\\PositionService.cs",
+              "RelativeToolTip": "Application\\PositionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:07.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "LeaveService.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Application\\LeaveService.cs",
+              "RelativeDocumentMoniker": "Application\\LeaveService.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Application\\LeaveService.cs",
+              "RelativeToolTip": "Application\\LeaveService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:07.186Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "EmployeeService.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Application\\EmployeeService.cs",
+              "RelativeDocumentMoniker": "Application\\EmployeeService.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Application\\EmployeeService.cs",
+              "RelativeToolTip": "Application\\EmployeeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:06.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "DepartmentService.cs",
+              "DocumentMoniker": "D:\\magi svetlio hrmc\\Application\\DepartmentService.cs",
+              "RelativeDocumentMoniker": "Application\\DepartmentService.cs",
+              "ToolTip": "D:\\magi svetlio hrmc\\Application\\DepartmentService.cs",
+              "RelativeToolTip": "Application\\DepartmentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-06T23:36:06.1Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

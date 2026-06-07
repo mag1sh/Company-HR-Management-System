@@ -10,5 +10,7 @@ namespace CompanyHRManagementSystem.Employees.Services.Interfaces
         IReadOnlyList<Employee> GetAll();
 
         void Save(Employee employee);
+
+        void UpdateSalary(int employeeId, decimal newAmount);
     }
 }

@@ -4,7 +4,7 @@ using CompanyHRManagementSystem.Employees.Domain.Entities;
 
 namespace CompanyHRManagementSystem.Employees.Services.Interfaces
 {
-    internal interface ILeaveRepository
+    public interface ILeaveRepository
     {
         Leave GetById(int id);
 
@@ -17,7 +17,5 @@ namespace CompanyHRManagementSystem.Employees.Services.Interfaces
         IReadOnlyList<Leave> GetByEmployeeId(int employeeId);
 
         IReadOnlyList<Leave> GetByDepartmentId(int departmentId);
-
-        
     }
 }

@@ -207,6 +207,10 @@
     <Compile Include="Migrations\20260529151028_AddNavigationPropertiesAndHistory.Designer.cs">
       <DependentUpon>20260529151028_AddNavigationPropertiesAndHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20260607172359_AddSalaryRelationship.cs" />
+    <Compile Include="Migrations\20260607172359_AddSalaryRelationship.Designer.cs">
+      <DependentUpon>20260607172359_AddSalaryRelationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CompanyStorageModelSnapshot.cs" />
     <Compile Include="Services\interfaces\IEmployeeService.cs" />
     <Compile Include="Application\Interfaces\ILeaveRepository.cs" />

@@ -45,8 +45,6 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
                 }
             }
             return result;
-        }
-
-       
+        }    
     }
 }

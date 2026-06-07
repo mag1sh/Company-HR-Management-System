@@ -71,26 +71,27 @@ namespace CompanyHRManagementSystem.Application
        
         public bool HasLeaveConflictInDepartment(int departmentId, DateTime startDate, DateTime endDate)
         {
-            
-            List<int> employeeIdsInDept = new List<int>();
-            foreach (var e in _storage.Employees)
-            {
-                if (e.DepartmentId == departmentId && e.Status == EmployeeStatus.Active)
-                    employeeIdsInDept.Add(e.Id);
-            }
+            //nz kvo pravqt tiq neshta
+            //List<int> employeeIdsInDept = new List<int>();
+            //foreach (var e in _storage.Employees)
+            //{
+            //    if (e.DepartmentId == departmentId && e.Status == EmployeeStatus.Active)
+            //        employeeIdsInDept.Add(e.Id);
+            //}
 
-          
-            foreach (var leave in _storage.Leaves)
-            {
-                if (leave.Status == LeaveStatus.Approved && employeeIdsInDept.Contains(leave.EmployeeId))
-                {
-                  
-                    if (startDate <= leave.EndDate && endDate >= leave.StartDate)
-                    {
-                        return true; 
-                    }
-                }
-            }
+
+            //foreach (var leave in _storage.Leaves)
+            //{
+            //    if (leave.Status == LeaveStatus.Approved && employeeIdsInDept.Contains(leave.EmployeeId))
+            //    {
+
+            //        if (startDate <= leave.EndDate && endDate >= leave.StartDate)
+            //        {
+            //            return true; 
+            //        }
+            //    }
+            //}
+            //return false;
             return false;
         }
 

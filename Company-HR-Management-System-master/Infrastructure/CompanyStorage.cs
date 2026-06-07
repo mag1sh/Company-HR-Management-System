@@ -1,7 +1,8 @@
-﻿using System;
-using CompanyHRManagementSystem.Employees.Domain.Entities;
+﻿using CompanyHRManagementSystem.Employees.Domain.Entities;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
@@ -27,8 +28,8 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
                     //"Encrypt=False;" +
                     //"TrustServerCertificate=True;"
 
-                    "Data Source=K207\\SQLEXPRESS;Database=CompanyHRDb;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;"
-                );
+                    // "Data Source=K207\\SQLEXPRESS;Database=CompanyHRDb;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;" k7
+                    "Data Source=DESKTOP-VGLENU1\\SQLEXPRESS;Database=CompanyHRDb;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;");
             }
         }
 
@@ -39,6 +40,11 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             modelBuilder.Entity<Employee>().OwnsOne(e => e.Email);
             modelBuilder.Entity<Employee>().OwnsOne(e => e.PhoneNumber);
             modelBuilder.Entity<Employee>().OwnsOne(e => e.Address);
+
+            modelBuilder.Entity<Employee>()
+                        .HasOne(e => e.Salary)
+                        .WithOne(s => s.Employee)
+                        .HasForeignKey<Salary>(s => s.EmployeeId);
 
             base.OnModelCreating(modelBuilder);
         }
