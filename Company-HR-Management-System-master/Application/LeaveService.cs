@@ -1,13 +1,9 @@
 ﻿using CompanyHRManagementSystem.Employees.Domain.Entities;
 using CompanyHRManagementSystem.Employees.Domain.Enums;
-using CompanyHRManagementSystem.Employees.Infrastructure;
 using CompanyHRManagementSystem.Employees.Services.Interfaces;
-using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Services
 {
@@ -63,12 +59,10 @@ namespace CompanyHRManagementSystem.Employees.Services
 
             var employee = _employeeRepository.GetById(leave.EmployeeId);
 
-            var conflicts = GetVacationConflictsInDepartmentForLeave(leave, employee.DepartmentId);
-
-            if (conflicts.Count > 0)
+            if (HasConflictInDepartment(leave, employee.DepartmentId))
             {
                 _leaveRepository.Delete(leaveId);
-                throw new Exception("Приемането на заявката е неуспешно поради създаване на конфликт с друг служител от същия отдел. Заявката е изтрита автоматично.");
+                throw new Exception("Приемането на заявката е неуспешно поради създаване на конфликт. Заявката е изтрита автоматично.");
             }
 
             leave.Approve();
@@ -170,32 +164,13 @@ namespace CompanyHRManagementSystem.Employees.Services
 
             foreach (var l in _leaveRepository.GetAll())
             {
-                if (employeeIds.Contains(l.EmployeeId) && l.Status == LeaveStatus.Approved)
+                if (employeeIds.Contains(l.EmployeeId) && l.Status == LeaveStatus.Approved && l.Id != leave.Id)
                 {
                     if (leave.StartDate <= l.EndDate && leave.EndDate >= l.StartDate)
                         return true;
                 }
             }
             return false;
-        }
-
-        private List<Leave> GetVacationConflictsInDepartmentForLeave(Leave leave, int departmentId)
-        {
-            var employeeIds = _employeeRepository.GetAll()
-                .Where(e => e.DepartmentId == departmentId && e.Id != leave.EmployeeId)
-                .Select(e => e.Id)
-                .ToList();
-
-            var conflicts = new List<Leave>();
-            foreach (var l in _leaveRepository.GetAll())
-            {
-                if (employeeIds.Contains(l.EmployeeId) && l.Status == LeaveStatus.Approved)
-                {
-                    if (leave.StartDate <= l.EndDate && leave.EndDate >= l.StartDate)
-                        conflicts.Add(l);
-                }
-            }
-            return conflicts;
         }
     }
 }
