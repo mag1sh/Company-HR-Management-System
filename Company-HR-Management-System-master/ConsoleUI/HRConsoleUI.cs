@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using CompanyHRManagementSystem.Application;
 using CompanyHRManagementSystem.Employees.Domain.Entities;
@@ -37,7 +38,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 Console.WriteLine("1. Добавяне на нов служител");
                 Console.WriteLine("2. Добавяне на отдел");
                 Console.WriteLine("3. Добавяне на позиция");
-                Console.WriteLine("4. Показване на всички активни служители"); //problemi malko v pokazvaneto na salary i department name
+                Console.WriteLine("4. Показване на всички активни служители");
                 Console.WriteLine("5. Редактиране на служител");
                 Console.WriteLine("6. Подаване на заявка за отпуск от служител");
                 Console.WriteLine("7. Проверка за налични дни отпуск за служител");
@@ -56,7 +57,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
                 Console.Write("Choose option: ");
 
-                string choice = Console.ReadLine();
+                string choice = Console.ReadLine().ToUpper();
 
                 switch (choice)
                 {
@@ -212,7 +213,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 return;
             }
             TimeSpan staj = (employee.TerminationDate ?? DateTime.Now) - employee.HireDate;
-            Console.WriteLine($"Служител: {employee.Name}, Трудов стаж в компанията: {staj.Days / 365} години, {(staj.Days % 365) / 30} месеца и {(staj.Days % 365) % 30} дни.");
+            Console.WriteLine($"Служител {employee.Name} има {staj.Days / 365} години, {(staj.Days % 365) / 30} месеца и {(staj.Days % 365) % 30} дни трудов стаж в компанията.");
             Console.ReadLine();
         }
 
@@ -500,24 +501,30 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
         {
             try
             {
+                var allEmployees = _employeeService.GetAllActiveEmployees();
+                Console.WriteLine("Активни служители");
+                foreach(var e in allEmployees)
+                {
+                    Console.WriteLine($"{e.Id} | {e.Name} | {e.Department.Name} | {e.Position.Title} | {e.Salary.Amount} euro");
+                }
                 Console.Write("Въведи id на служителя: ");
                 int employeeId = int.Parse(Console.ReadLine());
                 Employee employee = _employeeService.GetById(employeeId);
 
                 Console.Write("Въведи нова заплата (euro): ");
                 decimal newSalary = decimal.Parse(Console.ReadLine());
-                //if (!decimal.TryParse(Console.ReadLine(), out decimal newSalary))
+                //if (!decimal.TryParse(Console.ReadLine(), out decimal newFormatSalary))
                 //{
                 //    Console.WriteLine("Invalid salary format!");
                 //    return;
                 //}
 
                 _employeeService.UpdateSalary(employeeId, newSalary);
-                Console.WriteLine($"Заплатата на служител с {employeeId} id беше успешно променена!");
+                Console.WriteLine($"Заплатата на служител с id {employeeId} беше успешно променена!");
 
                 //employee.Salary.Amount = newSalary;
                 //_employeeService.UpdateEmployee(employee);
-                //Console.WriteLine($"Заплатата на служител с {employeeId} id беше успешно променена!");
+                //Console.WriteLine($"Заплатата на служител с id {employeeId} беше успешно променена!");
             }
             catch (Exception ex)
             {
@@ -530,24 +537,44 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
         {
             try
             {
+                var allEmployees = _employeeService.GetAllActiveEmployees();
+                Console.WriteLine("Активни служители");
+                foreach (var e in allEmployees)
+                {
+                    Console.WriteLine($"{e.Id} | {e.Name} | {e.Department.Name} | {e.Position.Title} | {e.Salary.Amount} euro");
+                }
+
                 Console.Write("Въведи id на служител: ");
                 int employeeId = int.Parse(Console.ReadLine());
                 Employee employee = _employeeService.GetById(employeeId);
 
                
                 Console.WriteLine($"Current Department: {_departmentService.GetById(employee.DepartmentId).Name}");
-                Console.WriteLine($"Current Position: {_positionService.GetById(employee.PositionId).Title}");
 
+                var allDepartments = _departmentService.GetAllDepartments();
+                Console.WriteLine("Available Departments:");
+                foreach (var d in allDepartments)
+                {
+                    Console.WriteLine($"{d.DepartmentId} | {d.Name}");
+                }
                 Console.Write("Enter new Department id: ");
                 int newDepartmentId = int.Parse(Console.ReadLine());
 
+                Console.WriteLine($"Current Position: {_positionService.GetById(employee.PositionId).Title}");
+                var allPositions = _positionService.GetAllPositions().Where(d => d.);
+                Console.WriteLine("Available Positions:");
+                foreach (var p in allPositions)
+                {
+                    Console.WriteLine($"{p.Id} | {p.Title}");
+                }
                 Console.Write("Enter new Position id: ");
                 int newPositionId = int.Parse(Console.ReadLine());
+
                 _departmentService.GetById(newDepartmentId);
                 _positionService.GetById(newPositionId);
-
                 employee.DepartmentId = newDepartmentId;
                 employee.PositionId = newPositionId;
+
                 _employeeService.UpdateEmployee(employee);
                 Console.WriteLine("Employee's department and position updated successfully!");
             }
