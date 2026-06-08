@@ -46,6 +46,11 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
                         .WithOne(s => s.Employee)
                         .HasForeignKey<Salary>(s => s.EmployeeId);
 
+            modelBuilder.Entity<Position>()
+                        .HasOne(p => p.Department)
+                        .WithMany()
+                        .HasForeignKey(p => p.DepartmentId);
+
             base.OnModelCreating(modelBuilder);
         }
     }

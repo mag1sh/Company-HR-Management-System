@@ -211,6 +211,10 @@
     <Compile Include="Migrations\20260607172359_AddSalaryRelationship.Designer.cs">
       <DependentUpon>20260607172359_AddSalaryRelationship.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20260608181451_AddDepartmentToPosition.cs" />
+    <Compile Include="Migrations\20260608181451_AddDepartmentToPosition.Designer.cs">
+      <DependentUpon>20260608181451_AddDepartmentToPosition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CompanyStorageModelSnapshot.cs" />
     <Compile Include="Services\interfaces\IEmployeeService.cs" />
     <Compile Include="Application\Interfaces\ILeaveRepository.cs" />

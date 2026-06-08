@@ -469,6 +469,17 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
         {
             Console.WriteLine("\n--- Добавяне на нова позиция ---");
 
+            var allDepartments = _departmentService.GetAllDepartments();
+            Console.WriteLine("Налични отдели:");
+            foreach (var d in allDepartments)
+            {
+                Console.WriteLine($"{d.DepartmentId} | {d.Name}");
+            }
+
+            Console.Write("За кой отдел е позицията (Department id): ");
+            int departmentId = int.Parse(Console.ReadLine());
+            _departmentService.GetById(departmentId);
+
             Console.Write("Position Title (e.g. C# Developer): ");
             string title = Console.ReadLine();
 
@@ -481,10 +492,9 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 Console.WriteLine("Invalid salary format! Position creation aborted.");
                 return;
             }
-
             try
             {    
-                var position = new Position(title, description, baseSalary);
+                var position = new Position(title, description, baseSalary, departmentId);
 
                 _positionService.AddPosition(position);
                 Console.WriteLine($"Position added successfully! Its REAL ID is: {position.Id}");
@@ -559,16 +569,30 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 }
                 Console.Write("Enter new Department id: ");
                 int newDepartmentId = int.Parse(Console.ReadLine());
+                _departmentService.GetById(newDepartmentId);
 
                 Console.WriteLine($"Current Position: {_positionService.GetById(employee.PositionId).Title}");
-                var allPositions = _positionService.GetAllPositions().Where(d => d.);
-                Console.WriteLine("Available Positions:");
+                var allPositions = _positionService.GetAllPositions().Where(d => d.DepartmentId == newDepartmentId).ToList();
+                if (allPositions.Count == 0)
+                {
+                    Console.WriteLine("Няма позиции за този отдел!");
+                    Console.ReadLine();
+                    return;
+                }
+                Console.WriteLine($"Налични позиции в отделa:");
                 foreach (var p in allPositions)
                 {
                     Console.WriteLine($"{p.Id} | {p.Title}");
                 }
                 Console.Write("Enter new Position id: ");
                 int newPositionId = int.Parse(Console.ReadLine());
+
+                if (!allPositions.Select(p => p.Id).Contains(newPositionId))
+                {
+                    Console.WriteLine("Тази позиция не е от избрания отдел!");
+                    Console.ReadLine();
+                    return;
+                }
 
                 _departmentService.GetById(newDepartmentId);
                 _positionService.GetById(newPositionId);
