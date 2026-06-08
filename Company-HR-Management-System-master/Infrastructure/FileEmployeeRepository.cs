@@ -91,6 +91,22 @@ namespace CompanyHRManagementSystem.Infrastructure
                 existingEmployee.Status = employee.Status;
                 existingEmployee.TerminationDate = employee.TerminationDate;
                 existingEmployee.HireDate = employee.HireDate;
+
+
+                if (existingEmployee.DepartmentId != employee.DepartmentId ||
+                existingEmployee.PositionId != employee.PositionId)
+                {
+                    existingEmployee.DepartmentId = employee.DepartmentId;
+                    existingEmployee.PositionId = employee.PositionId;
+
+                    var newPosition = _context.Positions
+                        .FirstOrDefault(p => p.Id == employee.PositionId);
+
+                    if (newPosition != null && existingEmployee.Salary != null)
+                    {
+                        existingEmployee.Salary.Amount = newPosition.BaseSalary;
+                    }
+                }
             }
 
             _context.SaveChanges();

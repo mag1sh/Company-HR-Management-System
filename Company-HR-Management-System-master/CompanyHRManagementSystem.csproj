@@ -215,6 +215,18 @@
     <Compile Include="Migrations\20260608181451_AddDepartmentToPosition.Designer.cs">
       <DependentUpon>20260608181451_AddDepartmentToPosition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20260608182446_FixCascadePosition.cs" />
+    <Compile Include="Migrations\20260608182446_FixCascadePosition.Designer.cs">
+      <DependentUpon>20260608182446_FixCascadePosition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20260608183218_InitialCreate.cs" />
+    <Compile Include="Migrations\20260608183218_InitialCreate.Designer.cs">
+      <DependentUpon>20260608183218_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20260608183726_FixPositionDepartmentFK.cs" />
+    <Compile Include="Migrations\20260608183726_FixPositionDepartmentFK.Designer.cs">
+      <DependentUpon>20260608183726_FixPositionDepartmentFK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CompanyStorageModelSnapshot.cs" />
     <Compile Include="Services\interfaces\IEmployeeService.cs" />
     <Compile Include="Application\Interfaces\ILeaveRepository.cs" />

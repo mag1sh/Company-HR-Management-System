@@ -23,7 +23,7 @@ namespace CompanyHRManagementSystem.Migrations
                 column: "DepartmentId",
                 principalTable: "Departments",
                 principalColumn: "DepartmentId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -49,7 +49,8 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             modelBuilder.Entity<Position>()
                         .HasOne(p => p.Department)
                         .WithMany()
-                        .HasForeignKey(p => p.DepartmentId);
+                        .HasForeignKey(p => p.DepartmentId)
+                        .OnDelete(DeleteBehavior.NoAction);
 
             base.OnModelCreating(modelBuilder);
         }
