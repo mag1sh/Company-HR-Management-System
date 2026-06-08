@@ -56,7 +56,7 @@ namespace CompanyHRManagementSystem.Employees.Services
             if (leave.Status != LeaveStatus.Pending)
                 throw new Exception("Могат да се одобряват само чакащи (Pending) заявки!");
             leave.Approve();
-            _leaveRepository.Save(leave);
+            _leaveRepository.SaveChanges();
         }
 
         
@@ -66,7 +66,7 @@ namespace CompanyHRManagementSystem.Employees.Services
             if (leave.Status != LeaveStatus.Pending)
                 throw new Exception("Могат да се отказват само чакащи (Pending) заявки!");
             leave.Reject();
-            _leaveRepository.Save(leave);
+            _leaveRepository.SaveChanges();
         }
 
         
@@ -97,7 +97,7 @@ namespace CompanyHRManagementSystem.Employees.Services
             return _leaveRepository.GetAll().ToList();
         }
 
-        public IEnumerable<object> GetVacationConflictsInDepartment(int departmentId)
+        public List<(Leave Leave1, Leave Leave2)> GetVacationConflictsInDepartment(int departmentId)
         {
             var employeeIds = _employeeRepository.GetAll()
                 .Where(e => e.DepartmentId == departmentId)
@@ -108,7 +108,7 @@ namespace CompanyHRManagementSystem.Employees.Services
                 .Where(l => l.Status == LeaveStatus.Approved && employeeIds.Contains(l.EmployeeId))
                 .ToList();
 
-            var conflicts = new List<object>();
+            var conflicts = new List<(Leave Leave1, Leave Leave2)>();
             for (int i = 0; i < approvedLeaves.Count; i++)
             {
                 for (int j = i + 1; j < approvedLeaves.Count; j++)
@@ -116,15 +116,7 @@ namespace CompanyHRManagementSystem.Employees.Services
                     if (approvedLeaves[i].StartDate <= approvedLeaves[j].EndDate &&
                         approvedLeaves[i].EndDate >= approvedLeaves[j].StartDate)
                     {
-                        conflicts.Add(new
-                        {
-                            Employee1Id = approvedLeaves[i].EmployeeId,
-                            Employee2Id = approvedLeaves[j].EmployeeId,
-                            OverlapStart = approvedLeaves[i].StartDate > approvedLeaves[j].StartDate
-                                ? approvedLeaves[i].StartDate : approvedLeaves[j].StartDate,
-                            OverlapEnd = approvedLeaves[i].EndDate < approvedLeaves[j].EndDate
-                                ? approvedLeaves[i].EndDate : approvedLeaves[j].EndDate
-                        });
+                        conflicts.Add((approvedLeaves[i], approvedLeaves[j]));
                     }
                 }
             }

@@ -232,26 +232,33 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
         private void CheckForVacationConflictsInDepartment()
         {
-            //Console.Clear();
-            //Console.WriteLine("--- Проверка за конфликт на отпуски в отдел ---");
-            //Console.Write("Enter Department id: ");
-            //int departmentId = int.Parse(Console.ReadLine());
-            //var conflicts = _leaveService.GetVacationConflictsInDepartment(departmentId);
-            //if (conflicts.Count == 0)
-            //{
-            //    Console.WriteLine("No vacation conflicts found in this department.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Vacation conflicts in this department:");
-            //    foreach (var conflict in conflicts)
-            //    {
-            //        var employee1 = _employeeService.GetById(conflict.EmployeeId1);
-            //        var employee2 = _employeeService.GetById(conflict.EmployeeId2);
-            //        Console.WriteLine($"Conflict between {employee1.Name} and {employee2.Name} from {conflict.StartDate:yyyy-MM-dd} to {conflict.EndDate:yyyy-MM-dd}");
-            //    }
-            //}
-            //Console.ReadLine(); - TAV NE E VAZMOJNO DA SE TESTVA, ZASHTOTO NE E IMPLEMENTIRANO V SERVICE-A  -copilot komentar btw ne e ot men
+            Console.Clear();
+            Console.WriteLine("--- Проверка за конфликт на отпуски в отдел ---");
+
+            var allDepartments = _departmentService.GetAllDepartments();
+            Console.WriteLine("Налични отдели:");
+            foreach (var d in allDepartments)
+            {
+                Console.WriteLine($"{d.DepartmentId} | {d.Name}");
+            }
+            Console.Write("Въведи id на отдел: ");
+            int departmentId = int.Parse(Console.ReadLine());
+            var conflicts = _leaveService.GetVacationConflictsInDepartment(departmentId).ToList();
+            if (conflicts.Count == 0)
+            {
+                Console.WriteLine("Няма конфликти на отпуски в този отдел.");
+            }
+            else
+            {
+                Console.WriteLine("Конфликти на отпуски в отдела:");
+                foreach (var conflict in conflicts)
+                {
+                    var employee1 = _employeeService.GetById(conflict.Leave1.EmployeeId);
+                    var employee2 = _employeeService.GetById(conflict.Leave2.EmployeeId);
+                    Console.WriteLine($"Конфликт между {employee1.Name} и {employee2.Name} от {conflict.Leave1.StartDate:yyyy-MM-dd} до {conflict.Leave2.EndDate:yyyy-MM-dd}");
+                }
+            }
+            Console.ReadLine();
         }
 
         private void ShowLeaveRequestsByPeriod()

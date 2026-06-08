@@ -1,9 +1,8 @@
-﻿using System;
+﻿using CompanyHRManagementSystem.Employees.Domain.Entities;
+using CompanyHRManagementSystem.Employees.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CompanyHRManagementSystem.Application.Interfaces;
-using CompanyHRManagementSystem.Employees.Domain.Entities;
-using CompanyHRManagementSystem.Employees.Services.Interfaces;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
@@ -18,24 +17,15 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
 
         public Leave GetById(int id)
         {
-            foreach (var leave in _context.Leaves)
-            {
-                if (leave.Id == id)
-                {
-                    return leave;
-                }
-            }
-            throw new Exception("Leave not found");
+            var leave = _context.Leaves.FirstOrDefault(l => l.Id == id);
+            if (leave == null)
+                throw new Exception("Leave not found");
+            return leave;
         }
 
         public IReadOnlyList<Leave> GetAll()
         {
-            List<Leave> allLeaves = new List<Leave>();
-            foreach (var leave in _context.Leaves)
-            {
-                allLeaves.Add(leave);
-            }
-            return allLeaves;
+            return _context.Leaves.ToList();
         }
 
         public void Save(Leave leave)
@@ -90,6 +80,11 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
                 _context.Leaves.Remove(leaveToDelete);
                 _context.SaveChanges(); 
             }
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
         }
 
         public IReadOnlyList<Leave> GetByEmployeeId(int employeeId)

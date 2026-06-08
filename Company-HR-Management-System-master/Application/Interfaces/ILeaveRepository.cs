@@ -14,6 +14,8 @@ namespace CompanyHRManagementSystem.Employees.Services.Interfaces
 
         void Delete(int id);
 
+        void SaveChanges();
+
         IReadOnlyList<Leave> GetByEmployeeId(int employeeId);
 
         IReadOnlyList<Leave> GetByDepartmentId(int departmentId);
