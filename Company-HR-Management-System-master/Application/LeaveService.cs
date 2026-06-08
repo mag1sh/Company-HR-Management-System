@@ -50,13 +50,44 @@ namespace CompanyHRManagementSystem.Employees.Services
             _leaveRepository.Save(leave);
         }
 
+        public Leave GetLeaveById(int leaveId)
+        {
+            return _leaveRepository.GetById(leaveId);
+        }
+
         public void ApproveLeave(int leaveId)
         {
             var leave = _leaveRepository.GetById(leaveId);
             if (leave.Status != LeaveStatus.Pending)
                 throw new Exception("Могат да се одобряват само чакащи (Pending) заявки!");
+
+            var employee = _employeeRepository.GetById(leave.EmployeeId);
+
+            var conflicts = GetVacationConflictsInDepartmentForLeave(leave, employee.DepartmentId);
+
+            if (conflicts.Count > 0)
+            {
+                _leaveRepository.Delete(leaveId);
+                throw new Exception("Приемането на заявката е неуспешно поради създаване на конфликт с друг служител от същия отдел. Заявката е изтрита автоматично.");
+            }
+
             leave.Approve();
             _leaveRepository.SaveChanges();
+
+            //var leave = _leaveRepository.GetById(leaveId);
+            //if (leave.Status != LeaveStatus.Pending)
+            //    throw new Exception("Могат да се одобряват само чакащи (Pending) заявки!");
+
+            //foreach (var l in _leaveRepository.GetAll())
+            //{
+            //    if (l.EmployeeId == leave.EmployeeId && l.Status == LeaveStatus.Approved && l.Id != leaveId)
+            //    {
+            //        if (leave.StartDate <= l.EndDate && leave.EndDate >= l.StartDate)
+            //            throw new Exception("Служителят вече има одобрен отпуск за този период!");
+            //    }
+            //}
+            //leave.Approve();
+            //_leaveRepository.SaveChanges();
         }
 
         
@@ -128,6 +159,43 @@ namespace CompanyHRManagementSystem.Employees.Services
             return _leaveRepository.GetAll()
                .Where(l => l.StartDate <= endDate && l.EndDate >= startDate)
                .ToList();
+        }
+
+        public bool HasConflictInDepartment(Leave leave, int departmentId)
+        {
+            var employeeIds = _employeeRepository.GetAll()
+                .Where(e => e.DepartmentId == departmentId && e.Id != leave.EmployeeId)
+                .Select(e => e.Id)
+                .ToList();
+
+            foreach (var l in _leaveRepository.GetAll())
+            {
+                if (employeeIds.Contains(l.EmployeeId) && l.Status == LeaveStatus.Approved)
+                {
+                    if (leave.StartDate <= l.EndDate && leave.EndDate >= l.StartDate)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        private List<Leave> GetVacationConflictsInDepartmentForLeave(Leave leave, int departmentId)
+        {
+            var employeeIds = _employeeRepository.GetAll()
+                .Where(e => e.DepartmentId == departmentId && e.Id != leave.EmployeeId)
+                .Select(e => e.Id)
+                .ToList();
+
+            var conflicts = new List<Leave>();
+            foreach (var l in _leaveRepository.GetAll())
+            {
+                if (employeeIds.Contains(l.EmployeeId) && l.Status == LeaveStatus.Approved)
+                {
+                    if (leave.StartDate <= l.EndDate && leave.EndDate >= l.StartDate)
+                        conflicts.Add(l);
+                }
+            }
+            return conflicts;
         }
     }
 }

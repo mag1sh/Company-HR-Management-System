@@ -255,7 +255,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 {
                     var employee1 = _employeeService.GetById(conflict.Leave1.EmployeeId);
                     var employee2 = _employeeService.GetById(conflict.Leave2.EmployeeId);
-                    Console.WriteLine($"Конфликт между {employee1.Name} и {employee2.Name} от {conflict.Leave1.StartDate:yyyy-MM-dd} до {conflict.Leave2.EndDate:yyyy-MM-dd}");
+                    Console.WriteLine($"Конфликт между {employee1.Name} и {employee2.Name} | {conflict.Leave1.StartDate:yyyy-MM-dd} - {conflict.Leave1.EndDate:yyyy-MM-dd} и {conflict.Leave2.StartDate:yyyy-MM-dd} - {conflict.Leave2.EndDate:yyyy-MM-dd}");
                 }
             }
             Console.ReadLine();
@@ -289,9 +289,36 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
         {
             Console.Clear();
             Console.WriteLine("--- Одобряване или отказване на заявка за отпуск ---");
-            _leaveService.GetAllLeaves().Where(r => r.Status == LeaveStatus.Pending);
+            var pendingLeaves = _leaveService.GetAllLeaves()
+                                             .Where(r => r.Status == LeaveStatus.Pending)
+                                             .ToList();
+
+            if (pendingLeaves.Count == 0)
+            {
+                Console.WriteLine("Няма чакащи заявки за отпуск.");
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("Чакащи заявки:");
+            foreach (var leave in pendingLeaves)
+            {
+                var employee = _employeeService.GetById(leave.EmployeeId);
+                int remainingDays = _leaveService.GetRemainingLeaveDays(leave.EmployeeId, DateTime.Now.Year);
+                Console.WriteLine($"{leave.Id} | {employee.Name} | {leave.LeaveType} | {leave.StartDate:yyyy-MM-dd} - {leave.EndDate:yyyy-MM-dd} | {leave.DaysCount} дни | Налични дни: {remainingDays} дни");
+            }
+            
             Console.Write("Въведи id на заявка за отпуск: ");
             int leaveId = int.Parse(Console.ReadLine());
+
+            var selectedLeave = _leaveService.GetLeaveById(leaveId);
+            var selectedEmployee = _employeeService.GetById(selectedLeave.EmployeeId);
+            bool hasConflict = _leaveService.HasConflictInDepartment(selectedLeave, selectedEmployee.DepartmentId);
+            if (hasConflict)
+            {
+                Console.WriteLine("Открит е конфликт. При одобряване заявката ще бъде автоматично изтрита.");
+            }
+
             Console.Write("Approve (Yes/No): ");
             string approveInput = Console.ReadLine();
             bool approve = approveInput.Equals("Yes", StringComparison.OrdinalIgnoreCase);
