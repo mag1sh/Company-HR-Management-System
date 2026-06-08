@@ -52,6 +52,18 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
                         .HasForeignKey(p => p.DepartmentId)
                         .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<EmploymentHistory>()
+                        .HasOne(e => e.Employee)
+                        .WithMany(e => e.EmploymentHistories)
+                        .HasForeignKey(e => e.EmployeeId)
+                        .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<SalaryHistory>()
+                        .HasOne(s => s.Employee)
+                        .WithMany(e => e.SalaryHistories)
+                        .HasForeignKey(s => s.EmployeeId)
+                        .OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(modelBuilder);
         }
     }
