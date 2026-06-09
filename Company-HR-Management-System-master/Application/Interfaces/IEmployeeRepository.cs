@@ -12,7 +12,7 @@ namespace CompanyHRManagementSystem.Employees.Services.Interfaces
 
         void Save(Employee employee);
 
-        void UpdateSalary(int employeeId, decimal newAmount);
+        void UpdateSalary(int employeeId, decimal newAmount, string reason);
 
         List<EmploymentHistory> GetEmploymentHistory(int employeeId);
 

@@ -1,12 +1,10 @@
 ﻿using CompanyHRManagementSystem.Employees.Domain.Entities;
 using CompanyHRManagementSystem.Employees.Domain.Enums;
-using CompanyHRManagementSystem.Employees.Infrastructure;
 using CompanyHRManagementSystem.Employees.Services.Interfaces;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace CompanyHRManagementSystem.Employees.Services
 {
@@ -28,16 +26,7 @@ namespace CompanyHRManagementSystem.Employees.Services
 
         public void UpdateEmployee(Employee updatedEmployee)
         {
-            var employee = GetById(updatedEmployee.Id);
-
-            employee.Name = updatedEmployee.Name;
-            employee.Email = updatedEmployee.Email;
-            employee.Address = updatedEmployee.Address;
-            employee.PhoneNumber = updatedEmployee.PhoneNumber;
-            employee.HireDate = updatedEmployee.HireDate;
-            employee.DepartmentId = updatedEmployee.DepartmentId;
-            employee.PositionId = updatedEmployee.PositionId;
-            _repository.Save(employee);
+            _repository.Save(updatedEmployee);
         }
 
         public void DeactivateEmployee(int employeeId)
@@ -71,9 +60,9 @@ namespace CompanyHRManagementSystem.Employees.Services
                 .ToList();
         }
 
-        public void UpdateSalary(int employeeId, decimal newAmount)
+        public void UpdateSalary(int employeeId, decimal newAmount, string reason)
         {
-            _repository.UpdateSalary(employeeId, newAmount);
+            _repository.UpdateSalary(employeeId, newAmount, reason);
         }
 
         public List<EmploymentHistory> GetEmploymentHistory(int employeeId)
