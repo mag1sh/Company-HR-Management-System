@@ -1,6 +1,7 @@
 ﻿using CompanyHRManagementSystem.Employees.Domain.Entities;
 using CompanyHRManagementSystem.Employees.Infrastructure;
 using CompanyHRManagementSystem.Employees.Services.Interfaces;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -86,8 +87,6 @@ namespace CompanyHRManagementSystem.Infrastructure
                 existingEmployee.Email = employee.Email;
                 existingEmployee.PhoneNumber = employee.PhoneNumber;
                 existingEmployee.Address = employee.Address;
-                existingEmployee.DepartmentId = employee.DepartmentId;
-                existingEmployee.PositionId = employee.PositionId;
                 existingEmployee.Status = employee.Status;
                 existingEmployee.TerminationDate = employee.TerminationDate;
                 existingEmployee.HireDate = employee.HireDate;
@@ -96,6 +95,15 @@ namespace CompanyHRManagementSystem.Infrastructure
                 if (existingEmployee.DepartmentId != employee.DepartmentId ||
                 existingEmployee.PositionId != employee.PositionId)
                 {
+                    var history = new EmploymentHistory(employee.Id,
+                                                        existingEmployee.DepartmentId.ToString(),
+                                                        employee.DepartmentId.ToString(),
+                                                        existingEmployee.PositionId.ToString(),
+                                                        employee.PositionId.ToString()
+                                                       );
+
+                    _context.EmploymentHistories.Add(history);
+
                     existingEmployee.DepartmentId = employee.DepartmentId;
                     existingEmployee.PositionId = employee.PositionId;
 
@@ -128,6 +136,22 @@ namespace CompanyHRManagementSystem.Infrastructure
                 salary.Amount = newAmount;
             }
             _context.SaveChanges();
+        }
+
+        public List<EmploymentHistory> GetEmploymentHistory(int employeeId)
+        {
+            return _context.EmploymentHistories
+                .Where(h => h.EmployeeId == employeeId)
+                .OrderByDescending(h => h.ChangeDate)
+                .ToList();
+        }
+
+        public List<SalaryHistory> GetSalaryHistory(int employeeId)
+        {
+            return _context.SalaryHistories
+                .Where(s => s.EmployeeId == employeeId)
+                .OrderByDescending(s => s.ChangeDate)
+                .ToList();
         }
     }
 }

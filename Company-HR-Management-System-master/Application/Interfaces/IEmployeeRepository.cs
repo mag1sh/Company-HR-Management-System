@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CompanyHRManagementSystem.Employees.Domain.Entities;
+using Domain.Entities;
 
 namespace CompanyHRManagementSystem.Employees.Services.Interfaces
 {
@@ -12,5 +13,9 @@ namespace CompanyHRManagementSystem.Employees.Services.Interfaces
         void Save(Employee employee);
 
         void UpdateSalary(int employeeId, decimal newAmount);
+
+        List<EmploymentHistory> GetEmploymentHistory(int employeeId);
+
+        List<SalaryHistory> GetSalaryHistory(int employeeId);
     }
 }

@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq; // Добавено за .ToList() метода
-using System.Windows.Forms;
-using CompanyHRManagementSystem.Employees.Domain.Entities;
+﻿using CompanyHRManagementSystem.Employees.Domain.Entities;
 using CompanyHRManagementSystem.Employees.Domain.Enums;
 using CompanyHRManagementSystem.Employees.Infrastructure;
 using CompanyHRManagementSystem.Employees.Services.Interfaces;
+using Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace CompanyHRManagementSystem.Employees.Services
 {
@@ -48,6 +49,11 @@ namespace CompanyHRManagementSystem.Employees.Services
             _repository.Save(employee);
         }
 
+        public List<Employee> GetAllEmployees()
+        {
+            return _repository.GetAll().ToList();
+        }
+
         public List<Employee> GetAllActiveEmployees()
         {
             return _repository.GetAll().Where(e => e.Status == EmployeeStatus.Active).ToList();
@@ -70,65 +76,14 @@ namespace CompanyHRManagementSystem.Employees.Services
             _repository.UpdateSalary(employeeId, newAmount);
         }
 
-        //public List<Employee> GenerateEmployeeTurnoverReport()
-        //{
-        //    //var report = _storage.Employees
-        //    //    .GroupBy(e => e.HireDate.Year)
-        //    //    .Select(g => new
-        //    //    {
-        //    //        Year = g.Key,
-        //    //        HiredCount = g.Count(e => e.Status == EmployeeStatus.Active),
-        //    //        LeftCount = g.Count(e => e.Status == EmployeeStatus.Inactive),
-        //    //        TurnoverRate = g.Count(e => e.Status == EmployeeStatus.Active) == 0
-        //    //            ? 0
-        //    //            : (double)g.Count(e => e.Status == EmployeeStatus.Inactive) / g.Count(e => e.Status == EmployeeStatus.Active) * 100
-        //    //    })
-        //    //    .ToList();
-        //    // return _repository.Employees.Where(e => e.Status == EmployeeStatus.Active).ToList(); //ignore
-        //}
+        public List<EmploymentHistory> GetEmploymentHistory(int employeeId)
+        {
+            return _repository.GetEmploymentHistory(employeeId);
+        }
 
-        //public List<Employee> GetEmployeeChangeHistory(int employeeId)
-        //{
-
-        //    //kak da go opraqv tva ve kak se pravi
-        //    var employee = GetById(employeeId);
-        //    var history = new List<Employee>();
-        //    history.AddRange(_storage.EmploymentHistories.Where(h => h.EmployeeId == employeeId).Select(h =>
-        //    {
-        //        return new Employee
-        //        {
-        //            Id = employee.Id,
-        //            Name = employee.Name,
-        //            Email = employee.Email,
-        //            Address = employee.Address,
-        //            PhoneNumber = employee.PhoneNumber,
-        //            HireDate = employee.HireDate,
-        //            DepartmentId = h.NewDepartment != null ? int.Parse(h.NewDepartment) : employee.DepartmentId,
-        //            PositionId = h.NewPosition != null ? int.Parse(h.NewPosition) : employee.PositionId,
-        //            Status = employee.Status
-        //        };
-        //    }));
-        //    history.AddRange(_storage.SalaryHistories.Where(s => s.EmployeeId == employeeId).Select(s =>
-        //    {
-        //        return new Employee
-        //        {
-        //            Id = employee.Id,
-        //            Name = employee.Name,
-        //            Email = employee.Email,
-        //            Address = employee.Address,
-        //            PhoneNumber = employee.PhoneNumber,
-        //            HireDate = employee.HireDate,
-        //            DepartmentId = employee.DepartmentId,
-        //            PositionId = employee.PositionId,
-        //            Status = employee.Status
-        //        };
-        //    }));
-        //    return history.OrderByDescending(e => e.HireDate).ToList();
-        //}
-
-        //public List<Salary> GetSalaryHistory(int employeeId)
-        //{
-        //    return _storage.SalaryHistories.Where(s => s.EmployeeId == employeeId).ToList();
-        //}
+        public List<SalaryHistory> GetSalaryHistory(int employeeId)
+        {
+            return _repository.GetSalaryHistory(employeeId);
+        }
     }
 }
