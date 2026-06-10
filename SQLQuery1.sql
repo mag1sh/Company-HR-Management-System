@@ -69,3 +69,5 @@ INSERT INTO Salaries (EmployeeId, Amount) VALUES
 
 SELECT * FROM Leaves WHERE Status = 1
 SELECT * FROM Employees
+
+SELECT * FROM Salaries WHERE EmployeeId = 12

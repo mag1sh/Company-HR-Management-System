@@ -231,6 +231,10 @@
     <Compile Include="Migrations\20260608184831_AddHistoryRelationships.Designer.cs">
       <DependentUpon>20260608184831_AddHistoryRelationships.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20260610185538_AddPhoneNumberColumn.cs" />
+    <Compile Include="Migrations\20260610185538_AddPhoneNumberColumn.Designer.cs">
+      <DependentUpon>20260610185538_AddPhoneNumberColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CompanyStorageModelSnapshot.cs" />
     <Compile Include="Services\interfaces\IEmployeeService.cs" />
     <Compile Include="Application\Interfaces\ILeaveRepository.cs" />

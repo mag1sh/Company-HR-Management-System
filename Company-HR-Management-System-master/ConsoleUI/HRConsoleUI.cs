@@ -141,6 +141,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 if (employees.Count == 0)
                 {
                     Console.WriteLine("Няма намерени служители, отговарящи на посочените условия.");
+                    Console.ReadLine();
                     return;
                 }
                 Console.WriteLine($"Служители с заплата между {minSalary} и {maxSalary}, от отдел {(departmentId.HasValue ? departmentId.ToString() : "всички")} и позиция {(positionId.HasValue ? positionId.ToString() : "всички")}:");
@@ -177,6 +178,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 if (salaryHistory.Count == 0)
                 {
                     Console.WriteLine("Няма намерени записи за заплатите на този служител.");
+                    Console.ReadLine();
                     return;
                 }
 
@@ -348,6 +350,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 if (leaves.Count == 0)
                 {
                     Console.WriteLine("Няма намерени заявки за отпуск за посочения период.");
+                    Console.ReadLine();
                     return;
                 }
                 Console.WriteLine($"Заявки за отпуск от {startDate:yyyy-MM-dd} до {endDate:yyyy-MM-dd}:");
@@ -642,6 +645,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 if (employees.Count == 0)
                 {
                     Console.WriteLine("Няма намерени служители с въведената позиция.");
+                    Console.ReadLine();
                     return;
                 }
                 Console.WriteLine($"Служители с позиция {positionId}:");
@@ -716,6 +720,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             if (!decimal.TryParse(Console.ReadLine(), out decimal baseSalary))
             {
                 Console.WriteLine("Invalid salary format! Position creation aborted.");
+                Console.ReadLine();
                 return;
             }
             try
@@ -757,6 +762,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 if (!decimal.TryParse(Console.ReadLine(), out decimal newSalary))
                 {
                     Console.WriteLine("Invalid salary format!");
+                    Console.ReadLine();
                     return;
                 }
 
