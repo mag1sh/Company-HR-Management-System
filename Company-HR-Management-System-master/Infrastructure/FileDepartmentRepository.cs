@@ -2,49 +2,48 @@
 using CompanyHRManagementSystem.Employees.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
     public class FileDepartmentRepository : IDepartmentRepository
     {
-        private readonly FileStorage _storage;
+        private readonly CompanyStorage _context;
 
-        public FileDepartmentRepository(FileStorage storage)
+        public FileDepartmentRepository(CompanyStorage context)
         {
-            _storage = storage;
+            _context = context;
         }
 
         public void Save(Department department)
         {
             if (department == null)
-                throw new ArgumentNullException("the department cant be null!");
-            //ArgumentNullException.ThrowIfNull(department);
-
-            var db = _storage.Load();
-            var newDepartment = new Department(
-                department.Name,
-                department.Description
-                );
-
-            db.Departments.Add(newDepartment);
-
-            _storage.Save(db);
+                throw new ArgumentNullException("Отделът не може да е null!");
+            
+            _context.Departments.Add(department);
+            _context.SaveChanges();
         }
 
-        public IReadOnlyList<Department> GetByDepartmentId(int departmentId)
+        public IReadOnlyList<Department> GetAll()
         {
-            var db = _storage.Load();
+            return _context.Departments.ToList();
+        }
 
-            List<Department> result = new List<Department>();
+        public Department GetById(int departmentId)
+        {
+            var department = _context.Departments
+                .FirstOrDefault(d => d.DepartmentId == departmentId);
 
-            foreach (Department department in db.Departments)
-            {
-                if (department.DepartmentId == departmentId)
-                {
-                    result.Add(department);
-                }
-            }
-            return result;
-        }    
+            if (department == null)
+                throw new Exception("Отделът не е намерен!");
+
+            return department;
+        }
+
+        public bool ExistsByName(string name)
+        {
+            return _context.Departments
+                .Any(d => d.Name.ToLower() == name.ToLower());
+        }
     }
 }

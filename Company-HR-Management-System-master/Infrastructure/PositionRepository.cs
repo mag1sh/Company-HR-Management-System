@@ -1,38 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using CompanyHRManagementSystem.Employees.Domain.Entities;
+﻿using CompanyHRManagementSystem.Application.Interfaces;
 using CompanyHRManagementSystem.Employees.Infrastructure;
 using Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CompanyHRManagementSystem.Infrastructure
 {
-    public class PositionRepository
+    public class PositionRepository : IPositionRepository
     {
         private readonly CompanyStorage _context;
+
         public PositionRepository(CompanyStorage context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+
         public Position GetById(int id)
         {
-            foreach (var position in _context.Positions)
-            {
-                if (position.Id == id)
-                {
-                    return position;
-                }
-            }
-            throw new Exception("Position not found");
+            var position = _context.Positions.FirstOrDefault(p => p.Id == id);
+            if (position == null)
+                throw new Exception("Position not found");
+            return position;
         }
 
         public IReadOnlyList<Position> GetAll()
         {
-            List<Position> allPositions = new List<Position>();
-            foreach (var position in _context.Positions)
-            {
-                allPositions.Add(position);
-            }
-            return allPositions;
+            return _context.Positions.ToList();
         }
 
         public void Save(Position position)
@@ -43,16 +37,7 @@ namespace CompanyHRManagementSystem.Infrastructure
             }
             else
             {
-                Position existing = null;
-                foreach (var p in _context.Positions)
-                {
-                    if (p.Id == position.Id)
-                    {
-                        existing = p;
-                        break;
-                    }
-                }
-
+                var existing = _context.Positions.FirstOrDefault(p => p.Id == position.Id);
                 if (existing == null)
                     throw new Exception("Position not found");
 
@@ -64,23 +49,17 @@ namespace CompanyHRManagementSystem.Infrastructure
             _context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public List<Position> GetByDepartmentId(int departmentId)
         {
-            Position positionToDelete = null;
-            foreach (var p in _context.Positions)
-            {
-                if (p.Id == id)
-                {
-                    positionToDelete = p;
-                    break;
-                }
-            }
+            return _context.Positions
+                .Where(p => p.DepartmentId == departmentId)
+                .ToList();
+        }
 
-            if (positionToDelete != null)
-            {
-                _context.Positions.Remove(positionToDelete);
-                _context.SaveChanges(); 
-            }
+        public bool ExistsByTitle(string title)
+        {
+            return _context.Positions
+                .Any(p => p.Title.ToLower() == title.ToLower());
         }
     }
 }

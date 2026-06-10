@@ -10,7 +10,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
 {
     public class Leave
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public int EmployeeId { get; private set; }
 
         public  Employee Employee { get; private set; }

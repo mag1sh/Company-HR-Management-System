@@ -15,11 +15,11 @@ namespace CompanyHRManagementSystem.Application
     public class DepartmentService
     {
 
-        private readonly CompanyStorage _storage;
+        private readonly IDepartmentRepository _repository;
 
-        public DepartmentService(CompanyStorage storage)
+        public DepartmentService(IDepartmentRepository repository)
         {
-            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
        
@@ -28,80 +28,32 @@ namespace CompanyHRManagementSystem.Application
             if (string.IsNullOrWhiteSpace(department.Name))
                 throw new Exception("Името на отдела не може да бъде празно!");
 
-            
-            foreach (var d in _storage.Departments)
-            {
-                if (d.Name.Equals(department.Name, StringComparison.OrdinalIgnoreCase))
-                    throw new Exception($"Отдел с име '{department.Name}' вече съществува!");
-            }
 
-            _storage.Departments.Add(department);
-            _storage.SaveChanges();
+            if (_repository.ExistsByName(department.Name))
+                throw new Exception($"Отдел с име '{department.Name}' вече съществува!");
+
+            _repository.Save(department);
         }
 
         public List<Department> GetAllDepartments()
         {
-            return _storage.Departments.ToList();
+            return _repository.GetAll().ToList();
         }
 
-       
+        public Department GetById(int departmentId)
+        {
+            return _repository.GetById(departmentId);
+        }
+
         public void AssignEmployeeToDepartment(int employeeId, int departmentId, int positionId)
         {
-           
-            Employee employee = null;
-            foreach (var e in _storage.Employees)
-            {
-                if (e.Id == employeeId) { employee = e; break; }
-            }
-            if (employee == null) throw new Exception("Служителят не е намерен!");
-
-           
-            Department department = null;
-            foreach (var d in _storage.Departments)
-            {
-                if (d.DepartmentId == departmentId) { department = d; break; } 
-            }
-            if (department == null) throw new Exception("Избраният отдел не съществува!");
-
-            
-            employee.DepartmentId = departmentId;
-            employee.PositionId = positionId;
+            _repository.GetById(departmentId);
         }
 
        
         public bool HasLeaveConflictInDepartment(int departmentId, DateTime startDate, DateTime endDate)
         {
-            //nz kvo pravqt tiq neshta
-            //List<int> employeeIdsInDept = new List<int>();
-            //foreach (var e in _storage.Employees)
-            //{
-            //    if (e.DepartmentId == departmentId && e.Status == EmployeeStatus.Active)
-            //        employeeIdsInDept.Add(e.Id);
-            //}
-
-
-            //foreach (var leave in _storage.Leaves)
-            //{
-            //    if (leave.Status == LeaveStatus.Approved && employeeIdsInDept.Contains(leave.EmployeeId))
-            //    {
-
-            //        if (startDate <= leave.EndDate && endDate >= leave.StartDate)
-            //        {
-            //            return true; 
-            //        }
-            //    }
-            //}
-            //return false;
             return false;
-        }
-
-        public Department GetById(int departmentId)
-        {
-            foreach (var d in _storage.Departments)
-            {
-                if (d.DepartmentId == departmentId) return d;
-            }
-            throw new Exception("Отделът не е намерен!");
         }
     }
 }

@@ -67,11 +67,13 @@ namespace CompanyHRManagementSystem
 
             var employeeRepo = new FileEmployeeRepository(sharedStorage);
             var leaveRepo = new FileLeaveRepository(sharedStorage);
+            var departmentRepo = new FileDepartmentRepository(sharedStorage);
+            var positionRepo = new PositionRepository(sharedStorage);
 
             var employeeService = new EmployeeService(employeeRepo);
             var leaveService = new LeaveService(leaveRepo, employeeRepo);
-            var departmentService = new DepartmentService(sharedStorage);
-            var positionService = new PositionService(sharedStorage);
+            var departmentService = new DepartmentService(departmentRepo);
+            var positionService = new PositionService(positionRepo);
 
             var ui = new HRConsoleUI(employeeService, departmentService, positionService, leaveService);
             ui.Start();

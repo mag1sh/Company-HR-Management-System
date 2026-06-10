@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CompanyHRManagementSystem.Application.Interfaces;
 using CompanyHRManagementSystem.Employees.Infrastructure;
 using Domain.Entities;
 
@@ -12,12 +11,12 @@ namespace CompanyHRManagementSystem.Application
     {
 
 
-        private readonly CompanyStorage _storage;
+        private readonly IPositionRepository _repository;
 
 
-        public PositionService(CompanyStorage storage)
+        public PositionService(IPositionRepository repository)
         {
-            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public void AddPosition(Position position)
@@ -26,42 +25,25 @@ namespace CompanyHRManagementSystem.Application
                 throw new Exception("Името на длъжността не може да бъде празно!");
 
 
-            foreach (var p in _storage.Positions)
-            {
-                if (p.Title.Equals(position.Title, StringComparison.OrdinalIgnoreCase))
-                {
-                    throw new Exception($"Длъжност с име '{position.Title}' вече съществува!");
-                }
-            }
+            if (_repository.ExistsByTitle(position.Title))
+                throw new Exception($"Длъжност с име '{position.Title}' вече съществува!");
 
-            _storage.Positions.Add(position);
-            _storage.SaveChanges();
+            _repository.Save(position);
         }
 
         public List<Position> GetByDepartmentId(int departmentId)
         {
-            return _storage.Positions
-                .Where(p => p.DepartmentId == departmentId)
-                .ToList();
+            return _repository.GetByDepartmentId(departmentId);
         }
 
         public List<Position> GetAllPositions()
         {
-            return _storage.Positions.ToList();
+            return _repository.GetAll().ToList();
         }
 
         public Position GetById(int positionId)
         {
-            foreach (var p in _storage.Positions)
-            {
-
-                if (p.Id == positionId)
-                {
-                    return p;
-                }
-            }
-
-            throw new Exception("Избраната длъжност/позиция не съществува!");
+            return _repository.GetById(positionId);
         }
     }
 }

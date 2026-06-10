@@ -10,7 +10,11 @@ namespace CompanyHRManagementSystem.Application.Interfaces
     public interface IDepartmentRepository
     {
         void Save(Department department);
-        IReadOnlyList<Department> GetByDepartmentId(int departmentId);
-       //ReadOnlyList<Department> GetByDepartmentName(string departmentName);
+
+        IReadOnlyList<Department> GetAll();
+
+        Department GetById(int departmentId);
+
+        bool ExistsByName(string name);
     }
 }
