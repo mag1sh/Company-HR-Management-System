@@ -2,7 +2,6 @@
 using CompanyHRManagementSystem.Employees.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CompanyHRManagementSystem.Employees.Infrastructure
 {
@@ -11,14 +10,12 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
         public class SqlSalaryRepository
         {
             private readonly CompanyStorage _context;
-
            
             public SqlSalaryRepository(CompanyStorage context)
             {
                 _context = context ?? throw new ArgumentNullException(nameof(context));
             }
-
-        
+       
             public void Save(Salary salary)
             {
                 

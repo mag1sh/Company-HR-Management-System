@@ -18,7 +18,6 @@ namespace CompanyHRManagementSystem
     //maj dobavih packetite ama nz
     internal class Program
     {
-
         static void Main(string[] args)
         {
             using (var context = new CompanyStorage())

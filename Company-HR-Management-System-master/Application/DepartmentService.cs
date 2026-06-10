@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CompanyHRManagementSystem.Application.Interfaces;
 using CompanyHRManagementSystem.Employees.Domain.Entities;
-using CompanyHRManagementSystem.Employees.Domain.Enums;
-using CompanyHRManagementSystem.Employees.Infrastructure;
-using CompanyHRManagementSystem.Employees.Services;
-using CompanyHRManagementSystem.Employees.Services.Interfaces;
 
 namespace CompanyHRManagementSystem.Application
 {

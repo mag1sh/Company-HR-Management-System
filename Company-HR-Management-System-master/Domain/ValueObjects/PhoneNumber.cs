@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
 {
     public class PhoneNumber
     {
         public string Number { get; }
+
         protected PhoneNumber()
         {
         }
+
         public PhoneNumber(string number)
         {
             if (string.IsNullOrWhiteSpace(number))

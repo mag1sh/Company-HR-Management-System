@@ -62,7 +62,6 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             _context.SaveChanges();
         }
 
-        
         public void Delete(int id)
         {
             Leave leaveToDelete = null;
@@ -99,7 +98,6 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             }
             return employeeLeaves;
         }
-
 
         public IReadOnlyList<Leave> GetByDepartmentId(int departmentId)
         {

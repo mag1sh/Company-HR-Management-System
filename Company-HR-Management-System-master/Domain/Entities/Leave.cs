@@ -1,10 +1,5 @@
 ﻿using CompanyHRManagementSystem.Employees.Domain.Enums;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Domain.Entities
 {
@@ -12,9 +7,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
     {
         public int Id { get; set; }
         public int EmployeeId { get; private set; }
-
         public  Employee Employee { get; private set; }
-
         public LeaveType LeaveType { get;  set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
@@ -38,8 +31,6 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
 
         public void Approve()
         {
-            //if (Status != LeaveStatus.Pending)
-            //    throw new InvalidOperationException("Only pending requests can be approved.");
             Status = LeaveStatus.Approved;
         }
 

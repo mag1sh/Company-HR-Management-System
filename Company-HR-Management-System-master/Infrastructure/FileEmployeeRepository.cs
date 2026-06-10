@@ -19,7 +19,6 @@ namespace CompanyHRManagementSystem.Infrastructure
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-
         public IReadOnlyList<Employee> GetAll()
         {
             return _context.Employees
@@ -29,7 +28,6 @@ namespace CompanyHRManagementSystem.Infrastructure
                            .AsNoTracking()
                            .ToList();
         }
-
 
         public Employee GetById(int id)
         {
@@ -46,7 +44,6 @@ namespace CompanyHRManagementSystem.Infrastructure
 
             return employee;
         }
-
 
         public void Save(Employee employee)
         {

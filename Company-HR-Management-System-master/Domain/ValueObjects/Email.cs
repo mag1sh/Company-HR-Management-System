@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
 {
@@ -13,6 +9,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
         protected Email()
         {
         }
+
         public Email(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -27,6 +24,7 @@ namespace CompanyHRManagementSystem.Employees.Domain.ValueObjects
             Value = value;
 
         }
+
         public override string ToString()
         {
             return Value;

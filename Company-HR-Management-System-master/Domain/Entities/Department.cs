@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CompanyHRManagementSystem.Employees.Domain.Entities
 {
@@ -14,7 +10,6 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
         public string Description { get; private set; }
 
         public  ICollection<Employee> Employees { get; private set; }
-
 
         // public List<Employee> Employees { get; private set; }
 

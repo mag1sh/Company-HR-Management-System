@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using CompanyHRManagementSystem.Application.Interfaces;
-using CompanyHRManagementSystem.Employees.Infrastructure;
 using Domain.Entities;
 
 namespace CompanyHRManagementSystem.Application

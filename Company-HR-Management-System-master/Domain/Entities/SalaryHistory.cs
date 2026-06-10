@@ -11,7 +11,6 @@ namespace Domain.Entities
 
         public  Employee Employee { get; set; }
 
-
         public decimal OldSalary { get; set; }
 
         public decimal NewSalary { get; set; }
