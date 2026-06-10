@@ -173,6 +173,7 @@
   <ItemGroup>
     <Compile Include="Application\DepartmentService.cs" />
     <Compile Include="Application\Interfaces\IDepartmentRepository.cs" />
+    <Compile Include="Application\Interfaces\IPositionRepository.cs" />
     <Compile Include="Application\PositionService.cs" />
     <Compile Include="ConsoleUI\HRConsoleUI.cs" />
     <Compile Include="Domain\Entities\Department.cs" />
