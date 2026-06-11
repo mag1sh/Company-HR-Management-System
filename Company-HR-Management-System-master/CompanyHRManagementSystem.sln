@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36429.23
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11828.311 oobstable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyHRManagementSystem", "CompanyHRManagementSystem.csproj", "{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyHRManagementSystem.Tests", "..\..\CompanyHRManagementSystem.Tests\CompanyHRManagementSystem.Tests.csproj", "{0B82D1DB-9FD5-10E7-6752-DEA055B1E956}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRManagmentTests", "..\..\Proekt desi\HRManagmentTests\HRManagmentTests.csproj", "{34FF73E0-68B6-42BA-83DC-7E017984BCE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1866BB3F-B73D-4AA4-8C53-C1BB21674CB0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B82D1DB-9FD5-10E7-6752-DEA055B1E956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B82D1DB-9FD5-10E7-6752-DEA055B1E956}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B82D1DB-9FD5-10E7-6752-DEA055B1E956}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B82D1DB-9FD5-10E7-6752-DEA055B1E956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34FF73E0-68B6-42BA-83DC-7E017984BCE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34FF73E0-68B6-42BA-83DC-7E017984BCE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34FF73E0-68B6-42BA-83DC-7E017984BCE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34FF73E0-68B6-42BA-83DC-7E017984BCE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
