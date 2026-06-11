@@ -947,37 +947,48 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             Console.Write("Enter last Name: ");
             string lastName = Console.ReadLine();
 
+            int deparmentId = 0;
             var alldepartments = _departmentService.GetAllDepartments().ToList();
-            foreach (var dep in alldepartments)
+
+            while (true)
             {
-                Console.WriteLine($"{dep.DepartmentId} - {dep.Name}");
-            }
-            Console.Write("Choose department id: ");
-            int deparmentId = int.Parse(Console.ReadLine());
-            var department = _departmentService.GetById(deparmentId);
-            if (!alldepartments.Contains(department))
-            {
-                Console.WriteLine("Няма отдел с избраното id");
-                Console.ReadLine();
-                GetEmployeInfo();
+                foreach (var dep in alldepartments)
+                {
+                    Console.WriteLine($"{dep.DepartmentId} - {dep.Name}");
+                }
+                Console.Write("Choose department id: ");
+                if (int.TryParse(Console.ReadLine(), out deparmentId))
+                {
+                    var department = _departmentService.GetById(deparmentId);
+                    if (department != null && alldepartments.Any(d => d.DepartmentId == deparmentId))
+                    {
+                        break;
+                    }
+                }
+                Console.WriteLine("Няма отдел с избраното id! Опитайте пак.\n");
             }
 
-            var allPositions = _positionService.GetAllPositions().ToList();
-            var positionsInDep = _positionService.GetByDepartmentId(deparmentId);
-            foreach (var pos in positionsInDep)
+            int positionId = 0;
+            var positionsInDep = _positionService.GetByDepartmentId(deparmentId).ToList();
+
+            while (true)
             {
-                Console.WriteLine($"{pos.Id} - {pos.Title}");
+                foreach (var pos in positionsInDep)
+                {
+                    Console.WriteLine($"{pos.Id} - {pos.Title}");
+                }
+                Console.Write("Choose position id: ");
+                if (int.TryParse(Console.ReadLine(), out positionId))
+                {
+                    var position = _positionService.GetById(positionId);
+                    if (position != null && positionsInDep.Any(p => p.Id == positionId))
+                    {
+                        break;
+                    }
+                }
+                Console.WriteLine("Няма позиция с това id или не е в избрания отдел! Опитайте пак.\n");
             }
-            Console.Write("Choose position id: ");
-            int positionId = int.Parse(Console.ReadLine());
-            var position = _positionService.GetById(positionId);
-            if (!positionsInDep.Contains(position))
-            {
-                Console.WriteLine("Няма позиция с това id или не е в избрания отдел");
-                Console.ReadLine();
-                GetEmployeInfo();
-            }          
-            
+
             Console.Write("Enter email: ");
             string emailInput = Console.ReadLine();
 
@@ -1013,14 +1024,17 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             PhoneNumber phoneNumber = new PhoneNumber(phone);
 
             var employee = new Employee(
-                 name,
+                name,
                 email,
                 phoneNumber,
                 address,
                 hiredate,
                 deparmentId,
                 positionId
-                );
+            );
+
+            var employeesPosition = _positionService.GetById(positionId);
+            employee.Salary = new Salary { Amount = employeesPosition.BaseSalary };
 
             return employee;
         }
@@ -1038,6 +1052,17 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             catch (Exception ex)
             {
                 Console.WriteLine($"Грешка: {ex.Message}");
+
+                // ТОВА ЩЕ НИ КАЖЕ ИСТИНАТА:
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Детайли от SQL: {ex.InnerException.Message}");
+
+                    if (ex.InnerException.InnerException != null)
+                    {
+                        Console.WriteLine($"Дълбоки детайли: {ex.InnerException.InnerException.Message}");
+                    }
+                }
             }
             Console.ReadLine();
         }
