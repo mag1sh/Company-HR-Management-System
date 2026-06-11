@@ -6,6 +6,7 @@ using CompanyHRManagementSystem.Employees.Services;
 using Domain.Entities;
 using System;
 using System.Linq;
+using System.Net;
 
 namespace CompanyHRManagementSystem.Employees.ConsoleUI
 {
@@ -712,6 +713,12 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
             Console.Write("Position Title (e.g. C# Developer): ");
             string title = Console.ReadLine();
+            if (string.IsNullOrEmpty(title))
+            {
+                Console.WriteLine("Title cannot be empty");
+                Console.ReadLine();
+                return;
+            }
 
             Console.Write("Position Description: ");
             string description = Console.ReadLine();
@@ -933,37 +940,63 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
         public Employee GetEmployeInfo()
         {
-            Console.Write("First Name: ");
+            Console.Clear();
+            Console.Write("Enter first Name: ");
             string firstName = Console.ReadLine();
 
-            Console.Write("Last Name: ");
+            Console.Write("Enter last Name: ");
             string lastName = Console.ReadLine();
 
-            Console.Write("Which department id: ");
+            var alldepartments = _departmentService.GetAllDepartments().ToList();
+            foreach (var dep in alldepartments)
+            {
+                Console.WriteLine($"{dep.DepartmentId} - {dep.Name}");
+            }
+            Console.Write("Choose department id: ");
             int deparmentId = int.Parse(Console.ReadLine());
+            var department = _departmentService.GetById(deparmentId);
+            if (!alldepartments.Contains(department))
+            {
+                Console.WriteLine("Няма отдел с избраното id");
+                Console.ReadLine();
+                GetEmployeInfo();
+            }
 
-            Console.Write("Position id: ");
-            int posionId = int.Parse(Console.ReadLine());
-
-            Console.Write("Email: ");
+            var allPositions = _positionService.GetAllPositions().ToList();
+            var positionsInDep = _positionService.GetByDepartmentId(deparmentId);
+            foreach (var pos in positionsInDep)
+            {
+                Console.WriteLine($"{pos.Id} - {pos.Title}");
+            }
+            Console.Write("Choose position id: ");
+            int positionId = int.Parse(Console.ReadLine());
+            var position = _positionService.GetById(positionId);
+            if (!positionsInDep.Contains(position))
+            {
+                Console.WriteLine("Няма позиция с това id или не е в избрания отдел");
+                Console.ReadLine();
+                GetEmployeInfo();
+            }          
+            
+            Console.Write("Enter email: ");
             string emailInput = Console.ReadLine();
 
-            Console.Write("Phone Number: ");
+            Console.Write("Enter phone number: ");
             string phone = Console.ReadLine();
 
-            Console.Write("Country: ");
+            Console.Write("Enter country: ");
             string country = Console.ReadLine();
 
-            Console.Write("City: ");
+            Console.Write("Enter city: ");
             string city = Console.ReadLine();
 
-            Console.Write("Postal Code: ");
+            Console.Write("Enter postal code: ");
             string postalCode = Console.ReadLine();
 
-            Console.Write("Street: ");
+            Console.Write("Enter street: ");
             string street = Console.ReadLine();
 
-            Console.Write("Street Number: ");
+            Console.Write("Enter street number: ");
             string streetNumber = Console.ReadLine();
 
             var email = new Email(emailInput);
@@ -986,7 +1019,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 address,
                 hiredate,
                 deparmentId,
-                posionId
+                positionId
                 );
 
             return employee;
@@ -1022,7 +1055,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
             foreach (var employee in employees)
             {
-                Console.WriteLine($"{employee.Id} | {employee.Department.Name} | {employee.Name} | {employee.Salary.Amount} euro | {employee.Email}");
+                Console.WriteLine($"{employee.Id} | {employee.Department.Name} | {employee.Position.Title} | {employee.Name} | {employee.Salary.Amount} euro | {employee.Email}");
             }
             Console.ReadLine();
         }

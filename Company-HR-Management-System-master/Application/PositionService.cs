@@ -8,10 +8,7 @@ namespace CompanyHRManagementSystem.Application
 {
     public class PositionService
     {
-
-
         private readonly IPositionRepository _repository;
-
 
         public PositionService(IPositionRepository repository)
         {
