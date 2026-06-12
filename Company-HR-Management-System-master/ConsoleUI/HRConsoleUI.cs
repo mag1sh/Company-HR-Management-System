@@ -149,7 +149,6 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
                 foreach (var employee in employees)
                 {
                     Console.WriteLine($"{employee.Id} | {employee.Department.Name} | {employee.Position.Title} | {employee.Name} | {employee.Salary.Amount} | {employee.Email}");
-                    Console.ReadLine();
                 }
             }
             catch (Exception ex)
@@ -476,7 +475,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             Console.WriteLine("Активни служители:");
             foreach (var e in allEmployees)
             {
-                Console.WriteLine($"{e.Id} || {e.Name}");
+                Console.WriteLine($"{e.Id} | {e.Name} | {e.Department.Name}");
             }
             Console.Write("Въведи id на служител: ");
 
@@ -700,7 +699,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
         {
             Console.WriteLine("\n--- Добавяне на нова позиция ---");
 
-            var allDepartments = _departmentService.GetAllDepartments();
+            var allDepartments = _departmentService.GetAllDepartments().ToList();
             Console.WriteLine("Налични отдели:");
             foreach (var d in allDepartments)
             {
@@ -710,6 +709,13 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             Console.Write("За кой отдел е позицията (Department id): ");
             int departmentId = int.Parse(Console.ReadLine());
             _departmentService.GetById(departmentId);
+            var dep = _departmentService.GetById(departmentId);
+            if (!allDepartments.Contains(dep))
+            {
+                Console.WriteLine("Избраният отдел не съществува");
+                Console.ReadLine();
+                return;
+            }
 
             Console.Write("Position Title (e.g. C# Developer): ");
             string title = Console.ReadLine();
@@ -911,7 +917,7 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             {
                 int employeeId = int.Parse(Console.ReadLine());
                 _employeeService.DeactivateEmployee(employeeId);
-                Console.WriteLine($"Служителят с {employeeId} id беше деактивиран успешно!");
+                Console.WriteLine($"Служителят с id {employeeId} беше деактивиран успешно!");
             }
             catch (Exception ex)
             {
@@ -924,9 +930,21 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
         {
             Console.Write("Department Name: ");
             string departmentName = Console.ReadLine();
+            if (string.IsNullOrEmpty(departmentName))
+            {
+                Console.WriteLine("Department name cannot be empty");
+                Console.ReadLine();
+                AddDepartment();
+            }
 
             Console.Write("Department Description: ");
             string departmnetDescription = Console.ReadLine();
+            if (string.IsNullOrEmpty(departmnetDescription))
+            {
+                Console.WriteLine("Department description cannot be empty");
+                Console.ReadLine();
+                return;
+            }
 
             var department = new Department(
                departmentName,
@@ -940,6 +958,76 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
 
         public Employee GetEmployeInfo()
         {
+            //Console.Clear();
+            //Console.Write("Enter first Name: ");
+            //string firstName = Console.ReadLine();
+
+            //Console.Write("Enter last Name: ");
+            //string lastName = Console.ReadLine();
+
+            //int deparmentId = 0;
+            //var alldepartments = _departmentService.GetAllDepartments().ToList();
+
+            //while (true)
+            //{
+            //    foreach (var dep in alldepartments)
+            //    {
+            //        Console.WriteLine($"{dep.DepartmentId} - {dep.Name}");
+            //    }
+            //    Console.Write("Choose department id: ");
+            //    if (int.TryParse(Console.ReadLine(), out deparmentId))
+            //    {
+            //        var department = _departmentService.GetById(deparmentId);
+            //        if (department != null && alldepartments.Any(d => d.DepartmentId == deparmentId))
+            //        {
+            //            break;
+            //        }
+            //    }
+            //    Console.WriteLine("Няма отдел с избраното id! Опитайте пак.\n");
+            //}
+
+            //int positionId = 0;
+            //var positionsInDep = _positionService.GetByDepartmentId(deparmentId).ToList();
+
+            //while (true)
+            //{
+            //    foreach (var pos in positionsInDep)
+            //    {
+            //        Console.WriteLine($"{pos.Id} - {pos.Title}");
+            //    }
+            //    Console.Write("Choose position id: ");
+            //    if (int.TryParse(Console.ReadLine(), out positionId))
+            //    {
+            //        var position = _positionService.GetById(positionId);
+            //        if (position != null && positionsInDep.Any(p => p.Id == positionId))
+            //        {
+            //            break;
+            //        }
+            //    }
+            //    Console.WriteLine("Няма позиция с това id или не е в избрания отдел! Опитайте пак.\n");
+            //}
+
+            //Console.Write("Enter email: ");
+            //string emailInput = Console.ReadLine();
+
+            //Console.Write("Enter phone number: ");
+            //string phone = Console.ReadLine();
+
+            //Console.Write("Enter country: ");
+            //string country = Console.ReadLine();
+
+            //Console.Write("Enter city: ");
+            //string city = Console.ReadLine();
+
+            //Console.Write("Enter postal code: ");
+            //string postalCode = Console.ReadLine();
+
+            //Console.Write("Enter street: ");
+            //string street = Console.ReadLine();
+
+            //Console.Write("Enter street number: ");
+            //string streetNumber = Console.ReadLine();
+
             Console.Clear();
             Console.Write("Enter first Name: ");
             string firstName = Console.ReadLine();
@@ -947,46 +1035,35 @@ namespace CompanyHRManagementSystem.Employees.ConsoleUI
             Console.Write("Enter last Name: ");
             string lastName = Console.ReadLine();
 
-            int deparmentId = 0;
             var alldepartments = _departmentService.GetAllDepartments().ToList();
-
-            while (true)
+            foreach (var dep in alldepartments)
             {
-                foreach (var dep in alldepartments)
-                {
-                    Console.WriteLine($"{dep.DepartmentId} - {dep.Name}");
-                }
-                Console.Write("Choose department id: ");
-                if (int.TryParse(Console.ReadLine(), out deparmentId))
-                {
-                    var department = _departmentService.GetById(deparmentId);
-                    if (department != null && alldepartments.Any(d => d.DepartmentId == deparmentId))
-                    {
-                        break;
-                    }
-                }
-                Console.WriteLine("Няма отдел с избраното id! Опитайте пак.\n");
+                Console.WriteLine($"{dep.DepartmentId} - {dep.Name}");
+            }
+            Console.Write("Choose department id: ");
+            int deparmentId = int.Parse(Console.ReadLine());
+            var department = _departmentService.GetById(deparmentId);
+            if (!alldepartments.Contains(department))
+            {
+                Console.WriteLine("Няма отдел с избраното id");
+                Console.ReadLine();
+                GetEmployeInfo();
             }
 
-            int positionId = 0;
-            var positionsInDep = _positionService.GetByDepartmentId(deparmentId).ToList();
-
-            while (true)
+            var allPositions = _positionService.GetAllPositions().ToList();
+            var positionsInDep = _positionService.GetByDepartmentId(deparmentId);
+            foreach (var pos in positionsInDep)
             {
-                foreach (var pos in positionsInDep)
-                {
-                    Console.WriteLine($"{pos.Id} - {pos.Title}");
-                }
-                Console.Write("Choose position id: ");
-                if (int.TryParse(Console.ReadLine(), out positionId))
-                {
-                    var position = _positionService.GetById(positionId);
-                    if (position != null && positionsInDep.Any(p => p.Id == positionId))
-                    {
-                        break;
-                    }
-                }
-                Console.WriteLine("Няма позиция с това id или не е в избрания отдел! Опитайте пак.\n");
+                Console.WriteLine($"{pos.Id} - {pos.Title}");
+            }
+            Console.Write("Choose position id: ");
+            int positionId = int.Parse(Console.ReadLine());
+            var position = _positionService.GetById(positionId);
+            if (!positionsInDep.Contains(position))
+            {
+                Console.WriteLine("Няма позиция с това id или не е в избрания отдел");
+                Console.ReadLine();
+                GetEmployeInfo();
             }
 
             Console.Write("Enter email: ");

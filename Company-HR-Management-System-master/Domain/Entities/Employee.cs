@@ -32,11 +32,12 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
         public  ICollection<EmploymentHistory> EmploymentHistories { get; set; }
         public  ICollection<SalaryHistory> SalaryHistories { get; set; }
 
-        // Constructor
+        // Constructor za sql
         protected Employee()
         {
            
         }
+
         public Employee( FullName name, Email email, PhoneNumber phoneNumber, Address address,
                         DateTime hireDate, int departmentId, int positionId) 
         {

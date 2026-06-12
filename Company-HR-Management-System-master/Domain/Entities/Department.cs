@@ -20,7 +20,6 @@ namespace CompanyHRManagementSystem.Employees.Domain.Entities
 
         public Department(string name, string description)
         {
-
             Name = name;
             Description = description;
             Employees = new List<Employee>();

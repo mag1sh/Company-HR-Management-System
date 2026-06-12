@@ -19,9 +19,8 @@ namespace CompanyHRManagementSystem.Application
        
         public void AddDepartment(Department department)
         {
-            if (string.IsNullOrWhiteSpace(department.Name))
-                throw new Exception("Името на отдела не може да бъде празно!");
-
+            //if (string.IsNullOrWhiteSpace(department.Name))
+            //    throw new Exception("Името на отдела не може да бъде празно!");
 
             if (_repository.ExistsByName(department.Name))
                 throw new Exception($"Отдел с име '{department.Name}' вече съществува!");

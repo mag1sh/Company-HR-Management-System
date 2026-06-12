@@ -236,6 +236,10 @@
     <Compile Include="Migrations\20260610185538_AddPhoneNumberColumn.Designer.cs">
       <DependentUpon>20260610185538_AddPhoneNumberColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20260612050514_vruzka.cs" />
+    <Compile Include="Migrations\20260612050514_vruzka.Designer.cs">
+      <DependentUpon>20260612050514_vruzka.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CompanyStorageModelSnapshot.cs" />
     <Compile Include="Services\interfaces\IEmployeeService.cs" />
     <Compile Include="Application\Interfaces\ILeaveRepository.cs" />

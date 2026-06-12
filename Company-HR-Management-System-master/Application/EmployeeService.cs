@@ -21,15 +21,13 @@ namespace CompanyHRManagementSystem.Employees.Services
         {
             
             decimal initialSalaryAmount = employee.Salary != null ? employee.Salary.Amount : 1000;
-
-            
+         
             employee.Department = null;
             employee.Position = null;
             employee.Salary = null;
 
             employee.Status = EmployeeStatus.Active;
 
-           
             _repository.Save(employee);
             _repository.UpdateSalary(employee.Id, initialSalaryAmount, "Начална заплата при назначаване");
         }

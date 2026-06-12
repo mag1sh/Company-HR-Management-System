@@ -34,8 +34,8 @@ namespace CompanyHRManagementSystem.Employees.Infrastructure
             var department = _context.Departments
                 .FirstOrDefault(d => d.DepartmentId == departmentId);
 
-            if (department == null)
-                throw new Exception("Отделът не е намерен!");
+            //if (department == null)
+            //    throw new Exception("Отделът не е намерен!");
 
             return department;
         }
